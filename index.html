@@ -36,7 +36,7 @@
   --max:1180px; --rand:clamp(18px,4vw,40px);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
 body{margin:0;background:var(--schwarz);color:var(--weiss);font:18px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img,video{max-width:100%;display:block}
 a{color:inherit}
@@ -91,20 +91,20 @@ header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,e
 .hero .lupe{position:absolute;z-index:30;left:0;top:0;width:var(--d);height:var(--d);pointer-events:none;will-change:transform}
 .hero .griff{pointer-events:auto;cursor:grab;touch-action:none}
 .hero .lupe.greift .griff{cursor:grabbing}
-.hero .griff{position:absolute;left:50%;top:50%;width:calc(var(--d)*.15);height:calc(var(--d)*1.42);margin-left:calc(var(--d)*-.075);transform-origin:50% 0;transform:rotate(-45deg);
+.hero .griff,.lupe-gross .griff{position:absolute;left:50%;top:50%;width:calc(var(--d)*.15);height:calc(var(--d)*1.42);margin-left:calc(var(--d)*-.075);transform-origin:50% 0;transform:rotate(-45deg);
   border-radius:0 0 calc(var(--d)*.075) calc(var(--d)*.075) / 0 0 calc(var(--d)*.06) calc(var(--d)*.06);
   background:linear-gradient(90deg,#4a060d 0%,#9c0914 18%,#d10b1c 40%,#e8323f 50%,#c50a1a 64%,#7a0711 86%,#3a0409 100%);
   box-shadow:calc(var(--d)*.03) calc(var(--d)*.05) calc(var(--d)*.14) rgba(0,0,0,.7),inset calc(var(--d)*.01) 0 calc(var(--d)*.02) rgba(255,255,255,.12),inset 0 calc(var(--d)*-.03) calc(var(--d)*.04) rgba(0,0,0,.45)}
-.hero .griff::before{content:"";position:absolute;left:-16%;right:-16%;top:calc(var(--d)*.49);height:calc(var(--d)*.15);border-radius:4px;
+.hero .griff::before,.lupe-gross .griff::before{content:"";position:absolute;left:-16%;right:-16%;top:calc(var(--d)*.49);height:calc(var(--d)*.15);border-radius:4px;
   background:linear-gradient(90deg,#1a1a1a 0%,#5a5a5a 22%,#0d0d0d 50%,#444 78%,#111 100%),linear-gradient(180deg,rgba(255,255,255,.15),rgba(0,0,0,.4));background-blend-mode:overlay;box-shadow:0 3px 7px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.2)}
 .hero .griff::after{content:"";position:absolute;left:-110%;right:-110%;top:calc(var(--d)*.5);bottom:-14px}
-.hero .glas{position:absolute;inset:0;border-radius:50%;overflow:hidden;box-sizing:border-box;border:calc(var(--d)*.055) solid #151515;background:#000;
+.hero .glas,.lupe-gross .glas{position:absolute;inset:0;border-radius:50%;overflow:hidden;box-sizing:border-box;border:calc(var(--d)*.055) solid #151515;background:#000;
   box-shadow:0 calc(var(--d)*.1) calc(var(--d)*.22) rgba(0,0,0,.7),inset 0 0 calc(var(--d)*.1) rgba(0,0,0,.45)}
 /* Metallring mit Kante: liegt über dem Rand des Glases */
-.hero .lupe::before{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:2;
+.hero .lupe::before,.lupe-gross::before{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:2;
   background:radial-gradient(circle closest-side,transparent calc(100% - var(--d)*.062),rgba(255,255,255,.3) calc(100% - var(--d)*.058),#2a2a2a calc(100% - var(--d)*.048),#0b0b0b calc(100% - var(--d)*.03),#3a3a3a calc(100% - var(--d)*.012),#777 calc(100% - 1.5px),#111 100%)}
 /* Glas: Randvignette, Lichtreflex oben links, schmaler Reflexstreifen */
-.hero .glas::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+.hero .glas::after,.lupe-gross .glas::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
   background:radial-gradient(circle at 50% 50%,transparent 58%,rgba(0,0,0,.42) 100%),
              radial-gradient(ellipse 34% 22% at 32% 22%,rgba(255,255,255,.34),rgba(255,255,255,0) 100%),
              linear-gradient(135deg,rgba(255,255,255,0) 38%,rgba(255,255,255,.1) 44%,rgba(255,255,255,0) 50%)}
@@ -151,9 +151,16 @@ h2.titel em{font-family:var(--serif);font-style:italic;font-weight:400;text-tran
 .hell .erkl{color:#333}
 
 /* Versprechen */
+.versprechen{overflow:hidden}
 .versprechen .raster{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
 .versprechen .lupe-bild{width:min(100%,520px);margin:0 auto}
-.versprechen .lupe-bild img{width:100%;height:auto}
+/* Große Lupe: Schuh-Foto im runden Glas, Ring und Griff wie bei der kleinen Lupe */
+.lupe-gross{--d:400px;position:relative;width:var(--d);height:var(--d);margin:10px auto calc(var(--d)*.42);transform:translateX(calc(var(--d)*-.08))}
+.lupe-gross .glas{background:#fff;box-shadow:0 calc(var(--d)*.12) calc(var(--d)*.26) rgba(0,0,0,.3),inset 0 0 calc(var(--d)*.12) rgba(0,0,0,.1)}
+.lupe-gross .glas img{position:absolute;left:50%;top:52%;width:86%;height:auto;transform:translate(-50%,-50%)}
+.lupe-gross .glas::after{background:radial-gradient(circle at 50% 50%,transparent 62%,rgba(0,0,0,.14) 100%),radial-gradient(ellipse 36% 22% at 32% 20%,rgba(255,255,255,.75),rgba(255,255,255,0) 100%)}
+.lupe-gross .griff{pointer-events:none;cursor:default}
+@media (max-width:900px){.lupe-gross{--d:min(280px,64vw);margin:30px 0 calc(var(--d)*.42) calc(50% - var(--d)*.62)}}
 .punkte{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:54px}
 .punkt{border-top:3px solid var(--schwarz);padding-top:18px}
 .punkt .zahl{font-family:var(--serif);font-size:clamp(48px,5vw,72px);line-height:1;letter-spacing:-.02em}
@@ -316,7 +323,10 @@ footer .cta .knopf{flex:0 1 auto}
         <p class="erkl">Viele Shops schreiben „Sale“ und meinen „fast normal“. Wir vergleichen den Preis mit anderen Shops und prüfen, ob deine Größe wirklich da ist. Erst dann landet ein Deal im Kanal.</p>
       </div>
       <div class="lupe-bild rein">
-        <img src="assets/lupe.webp" alt="Große Lupe, darunter ein weißer Sneaker mit rotem Sale-Anhänger" width="1100" height="728" loading="lazy" decoding="async">
+        <div class="lupe-gross" role="img" aria-label="Große Lupe über einem weißen Sneaker mit rotem Sale-Anhänger">
+          <div class="griff"></div>
+          <div class="glas"><img src="assets/schuh.webp" alt="" width="730" height="445" loading="lazy" decoding="async"></div>
+        </div>
       </div>
     </div>
     <div class="punkte">
