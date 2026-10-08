@@ -88,7 +88,7 @@ header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,e
 .hero .schleier{position:absolute;inset:0;z-index:1;pointer-events:none;background:
   linear-gradient(180deg,rgba(12,12,12,.55) 0%,rgba(12,12,12,0) 28%,rgba(12,12,12,0) 45%,rgba(12,12,12,.92) 78%,var(--schwarz) 100%)}
 .hero{--d:230px;--k:1.7}
-.hero .lupe{position:absolute;z-index:5;left:0;top:0;width:var(--d);height:var(--d);pointer-events:none;will-change:transform}
+.hero .lupe{position:absolute;z-index:30;left:0;top:0;width:var(--d);height:var(--d);pointer-events:none;will-change:transform}
 .hero .griff{pointer-events:auto;cursor:grab;touch-action:none}
 .hero .lupe.greift .griff{cursor:grabbing}
 .hero .griff{position:absolute;left:50%;top:50%;width:calc(var(--d)*.15);height:calc(var(--d)*1.42);margin-left:calc(var(--d)*-.075);transform-origin:50% 0;transform:rotate(-45deg);
@@ -107,7 +107,8 @@ header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,e
 .hero .glas::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 24%,rgba(255,255,255,.3),transparent 42%),linear-gradient(160deg,rgba(255,255,255,.1),transparent 55%)}
 .hero .inhalt{position:relative;z-index:4;width:100%;padding-top:140px;padding-bottom:clamp(28px,6vh,64px);pointer-events:none}
 .hero .inhalt a{pointer-events:auto}
-.hero .innen .inhalt{z-index:auto;pointer-events:none;margin:0;max-width:none}
+.hero .innen .inhalt,.hero .innen .kopf{z-index:auto;pointer-events:none;margin:0;max-width:none;inset:auto;padding-top:0}
+.hero .innen .inhalt{padding-top:140px}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:.9}
 .eyebrow::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--rot);box-shadow:0 0 0 0 rgba(225,10,31,.7);animation:puls 2.2s infinite}
 @keyframes puls{to{box-shadow:0 0 0 14px rgba(225,10,31,0)}}
@@ -446,11 +447,14 @@ footer .cta .knopf{flex:0 1 auto}
     var buehne = hero.querySelector('.film'), lupe = hero.querySelector('.lupe'), griff = hero.querySelector('.griff'), glas = hero.querySelector('.glas'), innen = hero.querySelector('.innen'), bild = innen.querySelector('img'), heroBild = buehne.querySelector('img');
     var w = 0, h = 0, d = 230, bw = 7, k = 1.7, handy = false, zx = 0, zy = 0, ax = 0, ay = 0, sc = 1, aktiv = false, greift = false, t0 = performance.now(), loslassTimer = 0;
     var inhalt = hero.querySelector('.inhalt'), cta = inhalt.querySelector('.cta'), kopie = null;
-    function bereich(){ if (handy) return {x0:.18,x1:.82,y0:.2,y1:.8}; var r = buehne.getBoundingClientRect(), c = cta.getBoundingClientRect(); return {x0:.08,x1:.96,y0:.08,y1:Math.max(.2,(c.top - r.top - d/2 - 6)/h)}; }
+    function bereich(){ if (handy) return {x0:.18,x1:.82,y0:.2,y1:.8}; var r = buehne.getBoundingClientRect(), c = cta.getBoundingClientRect(); return {x0:d/2/w,x1:1 - d/2/w,y0:d/2/h,y1:Math.max(.2,(c.top - r.top - d/2 - 6)/h)}; }
     /* Am PC liegt der Text über dem Bild: eine Kopie des Textes wandert mit in die Lupe, damit auch die Schrift vergrößert wird. */
-    function textkopie(){ if (kopie) kopie.remove(); kopie = null; if (handy) return; var r = buehne.getBoundingClientRect(), i = inhalt.getBoundingClientRect();
-      kopie = inhalt.cloneNode(true); kopie.setAttribute('aria-hidden','true'); var c = kopie.querySelector('.cta'); if (c) c.remove(); var m = kopie.querySelector('.micro'); if (m) m.remove();
-      kopie.style.cssText = 'position:absolute;left:' + (i.left - r.left) + 'px;top:' + (i.top - r.top) + 'px;width:' + i.width + 'px;'; innen.appendChild(kopie); }
+    var kopf = document.querySelector('header.kopf'), kopfKopie = null;
+    function klon(el, entfernen){ var r = buehne.getBoundingClientRect(), i = el.getBoundingClientRect(), k = el.cloneNode(true); k.setAttribute('aria-hidden','true');
+      (entfernen || []).forEach(function(sel){ var x = k.querySelector(sel); if (x) x.remove(); });
+      k.style.cssText = 'position:absolute;left:' + (i.left - r.left) + 'px;top:' + (i.top - r.top) + 'px;width:' + i.width + 'px;'; innen.appendChild(k); return k; }
+    function textkopie(){ if (kopie) kopie.remove(); if (kopfKopie) kopfKopie.remove(); kopie = kopfKopie = null; if (handy) return;
+      kopie = klon(inhalt, ['.cta', '.micro']); kopfKopie = klon(kopf); }
     function mass(){ var r = buehne.getBoundingClientRect(); w = r.width; h = r.height; handy = innerWidth <= 600; d = lupe.offsetWidth || d; bw = parseFloat(getComputedStyle(glas).borderTopWidth) || bw; k = parseFloat(getComputedStyle(hero).getPropertyValue('--k')) || k;
       innen.style.width = w + 'px'; innen.style.height = h + 'px'; if (heroBild.currentSrc && bild.src !== heroBild.currentSrc) bild.src = heroBild.currentSrc; textkopie(); }
     function setz(){ var c = (d - 2 * bw) / 2;
