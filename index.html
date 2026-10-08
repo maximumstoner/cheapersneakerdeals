@@ -453,7 +453,7 @@ footer .cta .knopf{flex:0 1 auto}
 
   /* Klickzählung (ohne Cookies, ohne Kennung): nur aktiv, wenn eine Zähl-Adresse eingetragen ist.
      Gesendet wird: welcher Knopf, utm_source/medium/campaign aus der Anzeige, Uhrzeit. Nichts Persönliches. */
-  var ZAEHLER = '';
+  var ZAEHLER = 'https://zaehler.cheapermedia.workers.dev/';
   if (ZAEHLER && navigator.sendBeacon) {
     var q = new URLSearchParams(location.search);
     document.querySelectorAll('a[data-knopf]').forEach(function(a){
