@@ -68,7 +68,7 @@ p{margin:0}
 header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,env(safe-area-inset-top))}
 .kopf .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
 .marke{display:inline-flex;align-items:center;text-decoration:none}
-.marke img{height:30px;width:auto}
+.marke img{height:46px;width:auto}
 .kopf nav a{font-weight:700;font-size:16px;text-decoration:none;color:#fff;opacity:.85;padding:10px 0}
 .kopf nav a:hover{opacity:1}
 
@@ -82,8 +82,8 @@ header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,e
 .hero .schleier{position:absolute;inset:0;z-index:1;background:
   linear-gradient(180deg,rgba(12,12,12,.55) 0%,rgba(12,12,12,0) 28%,rgba(12,12,12,0) 45%,rgba(12,12,12,.92) 78%,var(--schwarz) 100%)}
 .hero{--d:230px;--k:1.7}
-.hero .spot{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(circle 170px at var(--px,70%) var(--py,40%),rgba(0,0,0,0) 0,rgba(0,0,0,0) 55%,rgba(12,12,12,.38) 100%)}
-.hero .lupe{position:absolute;z-index:3;left:0;top:0;width:var(--d);height:var(--d);pointer-events:none;will-change:transform;transform:translate(calc(var(--px,70%) - var(--d)/2),calc(var(--py,40%) - var(--d)/2))}
+.hero .spot{position:absolute;inset:0;z-index:2;pointer-events:none;transition:opacity .35s;background:radial-gradient(circle 170px at var(--px,70%) var(--py,40%),rgba(0,0,0,0) 0,rgba(0,0,0,0) 55%,rgba(12,12,12,.38) 100%)}
+.hero .lupe{position:absolute;z-index:3;left:0;top:0;width:var(--d);height:var(--d);pointer-events:none;will-change:transform;transition:opacity .35s;transform:translate(calc(var(--px,70%) - var(--d)/2),calc(var(--py,40%) - var(--d)/2))}
 .hero .griff{position:absolute;left:50%;top:50%;width:calc(var(--d)*.14);height:calc(var(--d)*1.42);margin-left:calc(var(--d)*-.07);transform-origin:50% 0;transform:rotate(-45deg);border-radius:0 0 calc(var(--d)*.06) calc(var(--d)*.06);
   background:linear-gradient(#141414 0 calc(var(--d)*.52),#2b2b2b calc(var(--d)*.52) calc(var(--d)*.62),#e10a1f calc(var(--d)*.62),#b00818);box-shadow:calc(var(--d)*.02) calc(var(--d)*.03) calc(var(--d)*.1) rgba(0,0,0,.6)}
 .hero .glas{position:absolute;inset:0;border-radius:50%;overflow:hidden;box-sizing:border-box;border:7px solid #141414;background:#000;
@@ -104,6 +104,8 @@ header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,e
 .hero .lead b{font-weight:800}
 .hero .cta{max-width:720px}
 @media (max-height:700px) and (max-width:600px){.hero .inhalt{padding-top:100px}.hero h1{font-size:clamp(36px,9vw,44px);margin:10px 0 12px}.hero .lead{font-size:17px;margin-bottom:16px}.knopf{min-height:56px;font-size:18px}.hero .micro{display:none}}
+
+.hero.lupe-weg .lupe,.hero.lupe-weg .spot{opacity:0}
 
 /* Laufband */
 .band{background:var(--rot);color:#fff;overflow:hidden;padding:14px 0;border-top:1px solid rgba(255,255,255,.2)}
@@ -171,7 +173,7 @@ h2.titel em{font-family:var(--serif);font-style:italic;font-weight:400;text-tran
 /* Fuß */
 footer{padding:64px 0 max(40px,env(safe-area-inset-bottom));border-top:1px solid var(--linie);background:var(--schwarz)}
 footer .oben{display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between}
-footer .marke img{height:26px}
+footer .marke img{height:40px}
 footer .links{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:17px;color:var(--soft);margin-top:34px}
 footer .links a{color:#fff;text-decoration:underline;text-underline-offset:4px}
 footer .klein{font-size:15px;color:var(--soft);margin-top:18px;max-width:60em}
@@ -198,6 +200,8 @@ footer .cta .knopf{flex:0 1 auto}
 }
 @media (max-width:600px){
   .kopf nav{display:none}
+  .marke img{height:38px}
+  footer .marke img{height:34px}
   .cta .knopf{flex-basis:100%}
   .eyebrow{font-size:13px;letter-spacing:.1em}
   .hero{--d:150px;--k:1.6}
@@ -412,29 +416,40 @@ footer .cta .knopf{flex:0 1 auto}
   }
   if (document.readyState === 'complete') setTimeout(video, 300); else addEventListener('load', function(){ setTimeout(video, 300); });
 
-  /* Lupe: zeigt den Ausschnitt darunter vergrößert, folgt Maus oder Finger, treibt sonst langsam von selbst. */
+  /* Lupe: zeigt den Ausschnitt darunter vergrößert. PC: folgt der Maus über dem Bild, verschwindet über Text und Knöpfen.
+     Handy: folgt dem Finger nur, solange er auf dem Bild liegt; sonst treibt sie langsam über dem Schuh. */
   (function(){
-    var innen = hero.querySelector('.innen'), bild = innen.querySelector('img'), heroBild = hero.querySelector('.film img');
-    var w = 0, h = 0, handy = false, zx = 0, zy = 0, ax = 0, ay = 0, aktiv = false, t0 = performance.now();
+    var innen = hero.querySelector('.innen'), bild = innen.querySelector('img'), heroBild = hero.querySelector('.film img'), inhalt = hero.querySelector('.inhalt');
+    var w = 0, h = 0, handy = false, zx = 0, zy = 0, ax = 0, ay = 0, aktiv = false, t0 = performance.now(), loslassTimer = 0;
     function mass(){ var r = hero.getBoundingClientRect(); w = r.width; h = r.height; handy = w <= 600; hero.style.setProperty('--hw', w + 'px'); hero.style.setProperty('--hh', h + 'px'); if (heroBild.currentSrc && bild.src !== heroBild.currentSrc) bild.src = heroBild.currentSrc; }
     function setz(){ hero.style.setProperty('--px', ax.toFixed(1) + 'px'); hero.style.setProperty('--py', ay.toFixed(1) + 'px'); }
-    function ziel(t){ var s = (t - t0) / 1000; if (handy) { zx = w * (0.52 + 0.14 * Math.sin(s * .35)); zy = h * (0.25 + 0.05 * Math.sin(s * .5 + 1)); } else { zx = w * (0.72 + 0.09 * Math.sin(s * .33)); zy = h * (0.42 + 0.10 * Math.sin(s * .47 + 1)); } }
-    function tick(t){ if (!aktiv) ziel(t); ax += (zx - ax) * .1; ay += (zy - ay) * .1; setz(); requestAnimationFrame(tick); }
+    function ziel(t){ var s = (t - t0) / 1000;
+      if (handy) { zx = w * (0.52 + 0.14 * Math.sin(s * .30)); zy = h * (0.27 + 0.035 * Math.sin(s * .45 + 1)); }
+      else { zx = w * (0.70 + 0.03 * Math.sin(s * .30)); zy = h * (0.46 + 0.04 * Math.sin(s * .42 + 1)); } }
+    function tick(t){ if (!aktiv) ziel(t); var f = aktiv ? .28 : .06; ax += (zx - ax) * f; ay += (zy - ay) * f; setz(); requestAnimationFrame(tick); }
     mass(); ziel(t0); ax = zx; ay = zy; setz();
     heroBild.addEventListener('load', mass); addEventListener('resize', mass);
     if (ruhig) return;
     requestAnimationFrame(tick);
+    function ueberText(e){ var el = e.target; return !!(el.closest && (el.closest('.inhalt') || el.closest('a'))); }
     function zeig(e){ var r = hero.getBoundingClientRect(); zx = e.clientX - r.left; zy = e.clientY - r.top; aktiv = true; }
-    hero.addEventListener('pointermove', function(e){ if (e.pointerType === 'touch' && !aktiv) return; zeig(e); });
-    hero.addEventListener('pointerdown', function(e){ if (!e.target.closest('a')) zeig(e); });
-    hero.addEventListener('pointerleave', function(){ aktiv = false; });
-    /* Am PC läuft in der Lupe dasselbe Video wie dahinter. */
+    hero.addEventListener('pointermove', function(e){
+      if (e.pointerType === 'touch') { if (aktiv) zeig(e); return; }
+      if (ueberText(e)) { hero.classList.add('lupe-weg'); aktiv = false; return; }
+      hero.classList.remove('lupe-weg'); zeig(e);
+    });
+    hero.addEventListener('pointerdown', function(e){ if (e.pointerType !== 'touch' || ueberText(e)) return; clearTimeout(loslassTimer); zeig(e); });
+    function los(){ clearTimeout(loslassTimer); loslassTimer = setTimeout(function(){ aktiv = false; }, 1500); }
+    hero.addEventListener('pointerup', los); hero.addEventListener('pointercancel', los);
+    hero.addEventListener('pointerleave', function(){ aktiv = false; hero.classList.remove('lupe-weg'); });
+    /* Am PC läuft in der Lupe dasselbe Video wie dahinter, synchron gehalten. */
     var v = hero.querySelector('.film video');
     if (v && matchMedia('(pointer:fine)').matches && w > 900) {
       v.addEventListener('playing', function(){
         var v2 = document.createElement('video'); v2.muted = true; v2.loop = true; v2.playsInline = true; v2.setAttribute('aria-hidden', 'true');
         v2.src = v.currentSrc; innen.appendChild(v2); v2.addEventListener('playing', function(){ v2.classList.add('laeuft'); }, {once:true});
         v2.currentTime = v.currentTime; var p = v2.play(); if (p && p.catch) p.catch(function(){});
+        setInterval(function(){ if (Math.abs(v2.currentTime - v.currentTime) > 0.08 && !v.paused) v2.currentTime = v.currentTime; }, 1000);
       }, {once:true});
     }
   })();
