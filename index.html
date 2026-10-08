@@ -82,7 +82,7 @@ header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,e
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;background:var(--schwarz)}
 .hero .film{position:absolute;inset:0;overflow:hidden}
 .hero .film picture,.hero .film img,.hero .film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-@media (min-width:901px) and (orientation:landscape){.hero .film img,.hero .film video,.hero .glas .innen img,.hero .glas .innen video{object-position:68% 50%}}
+@media (min-width:901px) and (orientation:landscape){.hero .film img,.hero .film video,.hero .innen-bild img{object-position:68% 50%}}
 .hero .film video{opacity:0;transition:opacity 1.2s ease}
 .hero .film video.laeuft{opacity:1}
 .hero .schleier{position:absolute;inset:0;z-index:1;pointer-events:none;background:
@@ -100,15 +100,13 @@ header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,e
 .hero .griff::after{content:"";position:absolute;left:-110%;right:-110%;top:calc(var(--d)*.5);bottom:-14px}
 .hero .glas{position:absolute;inset:0;border-radius:50%;overflow:hidden;box-sizing:border-box;border:7px solid #141414;background:#000;
   box-shadow:0 0 0 1.5px rgba(255,255,255,.5),0 0 0 2.5px #000,0 26px 60px rgba(0,0,0,.7),inset 0 0 34px rgba(0,0,0,.45)}
-.hero .glas .innen{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
-.hero .glas .innen img,.hero .glas .innen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero .glas .innen video{opacity:0;transition:opacity 1.2s ease}
-.hero .glas .innen video.laeuft{opacity:1}
+.hero .glas .innen{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform;background:var(--schwarz)}
+.hero .innen-bild{position:absolute;overflow:hidden}
+.hero .innen-bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero .glas::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 24%,rgba(255,255,255,.3),transparent 42%),linear-gradient(160deg,rgba(255,255,255,.1),transparent 55%)}
 .hero .inhalt{position:relative;z-index:4;width:100%;padding-top:140px;padding-bottom:clamp(28px,6vh,64px);pointer-events:none}
 .hero .inhalt a{pointer-events:auto}
-.hero .innen .inhalt,.hero .innen .kopf{z-index:auto;pointer-events:none;margin:0;max-width:none;inset:auto;padding-top:0}
-.hero .innen .inhalt{padding-top:140px}
+.hero .innen .inhalt,.hero .innen .kopf{z-index:auto;pointer-events:none;margin:0;max-width:none;inset:auto}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:.9}
 .eyebrow::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--rot);box-shadow:0 0 0 0 rgba(225,10,31,.7);animation:puls 2.2s infinite}
 @keyframes puls{to{box-shadow:0 0 0 14px rgba(225,10,31,0)}}
@@ -120,7 +118,7 @@ header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,e
 @media (max-width:600px){
   .hero{display:block;min-height:0;--d:140px;--k:1.6}
   .hero .film{position:relative;inset:auto;height:46svh;min-height:300px;max-height:420px}
-  .hero .film img,.hero .film video{object-position:50% 32%}
+  .hero .film img,.hero .film video,.hero .innen-bild img{object-position:50% 32%}
   .hero .schleier{background:linear-gradient(180deg,rgba(12,12,12,.35) 0%,rgba(12,12,12,0) 30%,rgba(12,12,12,0) 70%,var(--schwarz) 100%)}
   .hero .glas{border-width:5px}
   .hero .inhalt{padding-top:6px;padding-bottom:22px}
@@ -249,6 +247,9 @@ footer .cta .knopf{flex:0 1 auto}
 <body>
 <a class="skip" href="#kanal">Direkt zur Kanalwahl</a>
 
+
+<main id="start">
+<section class="hero" id="hero">
 <header class="kopf">
   <div class="wrap">
     <a class="marke" href="/" aria-label="CHEAPER SNEAKER, Startseite">
@@ -258,9 +259,6 @@ footer .cta .knopf{flex:0 1 auto}
     <nav aria-label="Kurzwahl"><a href="#kanal">Zum Kanal ↓</a></nav>
   </div>
 </header>
-
-<main id="start">
-<section class="hero" id="hero">
   <div class="film" aria-hidden="true">
     <picture>
       <source media="(orientation: portrait)" srcset="assets/hero-hoch.webp">
@@ -269,8 +267,8 @@ footer .cta .knopf{flex:0 1 auto}
     <!-- Video wird erst nach dem ersten Bild per Script geladen (Schleife, ohne Ton). -->
     <video muted loop playsinline preload="none" tabindex="-1"></video>
     <div class="schleier" aria-hidden="true"></div>
-    <div class="lupe" aria-hidden="true"><div class="griff"></div><div class="glas"><div class="innen"><img src="assets/hero-quer.webp" alt="" width="1280" height="720" decoding="async"></div></div></div>
   </div>
+  <div class="lupe" aria-hidden="true"><div class="griff"></div><div class="glas"><div class="innen"><div class="innen-bild"><img src="assets/hero-quer.webp" alt="" width="1280" height="720" decoding="async"></div></div></div></div>
 
   <div class="wrap inhalt">
     <span class="eyebrow">Sneaker-Deals für Österreich und Deutschland</span>
@@ -440,39 +438,37 @@ footer .cta .knopf{flex:0 1 auto}
   }
   if (document.readyState === 'complete') setTimeout(video, 300); else addEventListener('load', function(){ setTimeout(video, 300); });
 
-  /* Lupe: zeigt den Ausschnitt des Bildes darunter vergrößert (Standbild, kein zweites Video).
-     Sie bleibt immer im Bildbereich: am PC rechts neben dem Text, am Handy auf der Bildfläche oben.
-     Maus oder Finger führen sie innerhalb dieses Bereichs, sonst treibt sie langsam über dem Schuh. */
+  /* Lupe: zeigt alles darunter vergrößert (Bild, Kopfzeile, Text als Kopien im Glas). Anfassen nur am Griff, Maus oder Finger.
+     Darf überall hin bis knapp über die Knöpfe; losgelassen treibt sie langsam über dem Schuh. */
   (function(){
-    var buehne = hero.querySelector('.film'), lupe = hero.querySelector('.lupe'), griff = hero.querySelector('.griff'), glas = hero.querySelector('.glas'), innen = hero.querySelector('.innen'), bild = innen.querySelector('img'), heroBild = buehne.querySelector('img');
-    var w = 0, h = 0, d = 230, bw = 7, k = 1.7, handy = false, zx = 0, zy = 0, ax = 0, ay = 0, sc = 1, aktiv = false, greift = false, t0 = performance.now(), loslassTimer = 0;
-    var inhalt = hero.querySelector('.inhalt'), cta = inhalt.querySelector('.cta'), kopie = null;
-    function bereich(){ if (handy) return {x0:.18,x1:.82,y0:.2,y1:.8}; var r = buehne.getBoundingClientRect(), c = cta.getBoundingClientRect(); return {x0:d/2/w,x1:1 - d/2/w,y0:d/2/h,y1:Math.max(.2,(c.top - r.top - d/2 - 6)/h)}; }
-    /* Am PC liegt der Text über dem Bild: eine Kopie des Textes wandert mit in die Lupe, damit auch die Schrift vergrößert wird. */
-    var kopf = document.querySelector('header.kopf'), kopfKopie = null;
-    function klon(el, entfernen){ var r = buehne.getBoundingClientRect(), i = el.getBoundingClientRect(), k = el.cloneNode(true); k.setAttribute('aria-hidden','true');
-      (entfernen || []).forEach(function(sel){ var x = k.querySelector(sel); if (x) x.remove(); });
-      k.style.cssText = 'position:absolute;left:' + (i.left - r.left) + 'px;top:' + (i.top - r.top) + 'px;width:' + i.width + 'px;'; innen.appendChild(k); return k; }
-    function textkopie(){ if (kopie) kopie.remove(); if (kopfKopie) kopfKopie.remove(); kopie = kopfKopie = null; if (handy) return;
-      kopie = klon(inhalt, ['.cta', '.micro']); kopfKopie = klon(kopf); }
-    function mass(){ var r = buehne.getBoundingClientRect(); w = r.width; h = r.height; handy = innerWidth <= 600; d = lupe.offsetWidth || d; bw = parseFloat(getComputedStyle(glas).borderTopWidth) || bw; k = parseFloat(getComputedStyle(hero).getPropertyValue('--k')) || k;
-      innen.style.width = w + 'px'; innen.style.height = h + 'px'; if (heroBild.currentSrc && bild.src !== heroBild.currentSrc) bild.src = heroBild.currentSrc; textkopie(); }
+    var film = hero.querySelector('.film'), lupe = hero.querySelector('.lupe'), griff = hero.querySelector('.griff'), glas = hero.querySelector('.glas'), innen = hero.querySelector('.innen'),
+        bildBlock = innen.querySelector('.innen-bild'), bild = bildBlock.querySelector('img'), heroBild = film.querySelector('img'),
+        inhalt = hero.querySelector('.inhalt'), cta = inhalt.querySelector('.cta'), kopf = document.querySelector('header.kopf'), kopien = [];
+    var w = 0, h = 0, d = 230, bw = 7, k = 1.7, handy = false, fx = 0, fy = 0, fw = 0, fh = 0, zx = 0, zy = 0, ax = 0, ay = 0, sc = 1, aktiv = false, greift = false, t0 = performance.now(), loslassTimer = 0, ox = 0, oy = 0;
+    function bereich(){ var r = hero.getBoundingClientRect(), c = cta.getBoundingClientRect(); return {x0:d/2/w, x1:1 - d/2/w, y0:d/2/h, y1:Math.max(d/2/h + .05, (c.top - r.top - d/2 - 6)/h)}; }
+    function klon(el, entfernen){ var r = hero.getBoundingClientRect(), i = el.getBoundingClientRect(), x = el.cloneNode(true); x.setAttribute('aria-hidden','true');
+      (entfernen || []).forEach(function(sel){ var y = x.querySelector(sel); if (y) y.remove(); });
+      x.style.cssText = 'position:absolute;left:' + (i.left - r.left) + 'px;top:' + (i.top - r.top) + 'px;width:' + i.width + 'px;'; innen.appendChild(x); return x; }
+    function kopienBauen(){ kopien.forEach(function(x){ x.remove(); }); kopien = [klon(inhalt, ['.cta', '.micro']), klon(kopf)]; }
+    function mass(){ var r = hero.getBoundingClientRect(), f = film.getBoundingClientRect(); w = r.width; h = r.height; fx = f.left - r.left; fy = f.top - r.top; fw = f.width; fh = f.height;
+      handy = innerWidth <= 600; d = lupe.offsetWidth || d; bw = parseFloat(getComputedStyle(glas).borderTopWidth) || bw; k = parseFloat(getComputedStyle(hero).getPropertyValue('--k')) || k;
+      innen.style.width = w + 'px'; innen.style.height = h + 'px'; bildBlock.style.cssText = 'left:' + fx + 'px;top:' + fy + 'px;width:' + fw + 'px;height:' + fh + 'px;';
+      if (heroBild.currentSrc && bild.src !== heroBild.currentSrc) bild.src = heroBild.currentSrc; kopienBauen(); }
     function setz(){ var c = (d - 2 * bw) / 2;
       lupe.style.transform = 'translate3d(' + (ax - d / 2).toFixed(1) + 'px,' + (ay - d / 2).toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
       innen.style.transform = 'translate3d(' + (c - ax * k).toFixed(1) + 'px,' + (c - ay * k).toFixed(1) + 'px,0) scale(' + k + ')'; }
-    function ziel(t){ var s = (t - t0) / 1000, b = bereich(), mx = (b.x0 + b.x1) / 2, my = (b.y0 + b.y1) / 2;
-      zx = w * (mx + (b.x1 - mx) * .55 * Math.sin(s * .17)); zy = h * (my + (b.y1 - my) * .45 * Math.sin(s * .23 + 1)); }
+    function ziel(t){ var s = (t - t0) / 1000;
+      if (handy) { zx = fx + fw * (0.5 + 0.16 * Math.sin(s * .17)); zy = fy + fh * (0.5 + 0.12 * Math.sin(s * .23 + 1)); }
+      else { zx = w * (0.72 + 0.05 * Math.sin(s * .17)); zy = h * (0.45 + 0.08 * Math.sin(s * .23 + 1)); } }
     function tick(t){ if (!aktiv) ziel(t); var f = greift ? .35 : (aktiv ? .2 : .035); ax += (zx - ax) * f; ay += (zy - ay) * f; sc += ((aktiv ? 1.08 : 1) - sc) * .1; setz(); requestAnimationFrame(tick); }
     mass(); ziel(t0); ax = zx; ay = zy; setz();
-    heroBild.addEventListener('load', mass); addEventListener('resize', mass);
+    heroBild.addEventListener('load', mass); addEventListener('resize', mass); addEventListener('load', mass);
     if (ruhig) return;
     requestAnimationFrame(tick);
     function los(){ clearTimeout(loslassTimer); loslassTimer = setTimeout(function(){ aktiv = false; }, 1200); }
-    /* Anfassen am Griff und ziehen (Maus und Finger), loslassen: treibt weiter. Der Rest der Seite scrollt wie gewohnt. */
-    var ox = 0, oy = 0;
-    griff.addEventListener('pointerdown', function(e){ var r = buehne.getBoundingClientRect(); greift = true; clearTimeout(loslassTimer); aktiv = true;
+    griff.addEventListener('pointerdown', function(e){ var r = hero.getBoundingClientRect(); greift = true; clearTimeout(loslassTimer); aktiv = true;
       ox = (e.clientX - r.left) - ax; oy = (e.clientY - r.top) - ay; lupe.classList.add('greift'); try { griff.setPointerCapture(e.pointerId); } catch (x) {} e.preventDefault(); });
-    griff.addEventListener('pointermove', function(e){ if (!greift) return; var r = buehne.getBoundingClientRect(), b = bereich();
+    griff.addEventListener('pointermove', function(e){ if (!greift) return; var r = hero.getBoundingClientRect(), b = bereich();
       zx = Math.min(Math.max(e.clientX - r.left - ox, w * b.x0), w * b.x1); zy = Math.min(Math.max(e.clientY - r.top - oy, h * b.y0), h * b.y1); });
     function loslassen(){ if (!greift) return; greift = false; lupe.classList.remove('greift'); los(); }
     griff.addEventListener('pointerup', loslassen); griff.addEventListener('pointercancel', loslassen);
