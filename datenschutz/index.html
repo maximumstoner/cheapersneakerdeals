@@ -18,6 +18,7 @@ p,li{color:#d6d6da}
 .hinweis{background:#1A1A1C;border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px 18px;color:#fff;font-size:17px}
 .marke{text-decoration:none}.wm{display:inline-block;font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:-.045em;line-height:.86;font-size:22px}.wm b,.wm i{display:block;font-style:italic;font-weight:900}.wm b{color:#fff}.wm i{color:#E10A1F}
 footer{margin-top:50px;font-size:16px;color:#9a9aa2}
+p,li,blockquote{text-wrap:pretty}
 </style>
 </head>
 <body>
@@ -55,5 +56,19 @@ footer{margin-top:50px;font-size:16px;color:#9a9aa2}
 
 <footer><a href="/">Zurück zur Startseite</a> · <a href="/offenlegung/">Offenlegung</a></footer>
 </main>
+<script>
+  /* Satzanfänge nicht allein am Zeilenende: erstes und zweites Wort jedes Satzes bleiben zusammen (geschütztes Leerzeichen),
+     dadurch rutscht ein Satz ganz in die nächste Zeile, wenn nur sein erstes Wort noch Platz hätte. */
+  (function(){
+    var re = /([.!?…][“"»)]?)(\s+)([^\s]+)(\s+)([^\s]+)/g;
+    var wurzeln = document.querySelectorAll('main, footer');
+    wurzeln.forEach(function(w){
+      var walker = document.createTreeWalker(w, NodeFilter.SHOW_TEXT, { acceptNode: function(n){
+        var el = n.parentElement; if (!el || el.closest('h1,h2,h3,a,.knopf,.wm,.eyebrow,.ueber,script,style')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.trim().length > 20 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP; } });
+      var n; while ((n = walker.nextNode())) { n.nodeValue = n.nodeValue.replace(re, function(m, p, s1, w1, s2, w2){ return p + s1 + w1 + ' ' + w2; }); }
+    });
+  })();
+</script>
 </body>
 </html>

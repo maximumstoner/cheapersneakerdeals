@@ -41,7 +41,7 @@ body{margin:0;background:var(--schwarz);color:var(--weiss);font:18px/1.55 var(--
 img,video{max-width:100%;display:block}
 a{color:inherit}
 h1,h2,h3{margin:0;line-height:1;letter-spacing:-.02em}
-p{margin:0}
+p{margin:0;text-wrap:pretty}
 .wrap{max-width:var(--max);margin:0 auto;padding-left:var(--rand);padding-right:var(--rand)}
 .serif{font-family:var(--serif);font-weight:400}
 .rot{color:var(--rot)}
@@ -525,6 +525,20 @@ footer .cta .knopf{flex:0 1 auto}
   if ('IntersectionObserver' in window && leiste && cta) {
     new IntersectionObserver(function(es){ var weg = !es[0].isIntersecting && es[0].boundingClientRect.top < 0; leiste.classList.toggle('an', weg); leiste.setAttribute('aria-hidden', weg ? 'false' : 'true'); leiste.querySelectorAll('a').forEach(function(a){ a.tabIndex = weg ? 0 : -1; }); }).observe(cta);
   }
+
+
+  /* Satzanfänge nicht allein am Zeilenende: erstes und zweites Wort jedes Satzes bleiben zusammen (geschütztes Leerzeichen),
+     dadurch rutscht ein Satz ganz in die nächste Zeile, wenn nur sein erstes Wort noch Platz hätte. */
+  (function(){
+    var re = /([.!?…][“"»)]?)(\s+)([^\s]+)(\s+)([^\s]+)/g;
+    var wurzeln = document.querySelectorAll('main, footer');
+    wurzeln.forEach(function(w){
+      var walker = document.createTreeWalker(w, NodeFilter.SHOW_TEXT, { acceptNode: function(n){
+        var el = n.parentElement; if (!el || el.closest('h1,h2,h3,a,.knopf,.wm,.eyebrow,.ueber,script,style')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.trim().length > 20 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP; } });
+      var n; while ((n = walker.nextNode())) { n.nodeValue = n.nodeValue.replace(re, function(m, p, s1, w1, s2, w2){ return p + s1 + w1 + ' ' + w2; }); }
+    });
+  })();
 
   /* Klickzählung (ohne Cookies, ohne Kennung): nur aktiv, wenn eine Zähl-Adresse eingetragen ist.
      Gesendet wird: welcher Knopf, utm_source/medium/campaign aus der Anzeige, Uhrzeit. Nichts Persönliches. */
