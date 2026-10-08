@@ -121,6 +121,7 @@ header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,e
   .hero .cta .knopf.wa{min-height:58px!important;font-size:19px!important}
   .hero .cta .knopf.tg{min-height:46px;font-size:16px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45);box-shadow:none}
   .hero .micro{font-size:14px;margin-top:10px}
+  .band{display:none}
 }
 
 
@@ -450,11 +451,15 @@ footer .cta .knopf{flex:0 1 auto}
     requestAnimationFrame(tick);
     function zeig(e){ var r = buehne.getBoundingClientRect(), b = bereich(); var x = e.clientX - r.left, y = e.clientY - r.top;
       zx = Math.min(Math.max(x, w * b.x0), w * b.x1); zy = Math.min(Math.max(y, h * b.y0), h * b.y1); aktiv = true; }
-    buehne.addEventListener('pointermove', function(e){ if (e.pointerType === 'touch' && !aktiv) return; zeig(e); });
-    buehne.addEventListener('pointerdown', function(e){ if (e.pointerType !== 'touch') return; clearTimeout(loslassTimer); zeig(e); });
     function los(){ clearTimeout(loslassTimer); loslassTimer = setTimeout(function(){ aktiv = false; }, 1500); }
-    buehne.addEventListener('pointerup', los); buehne.addEventListener('pointercancel', los);
-    buehne.addEventListener('pointerleave', function(){ aktiv = false; });
+    /* Maus (PC) */
+    buehne.addEventListener('pointermove', function(e){ if (e.pointerType === 'touch') return; zeig(e); });
+    buehne.addEventListener('pointerleave', function(e){ if (e.pointerType === 'touch') return; aktiv = false; });
+    /* Finger (Handy): folgt überall auf dem Bild, Seite bleibt scrollbar */
+    function finger(e){ if (e.touches && e.touches.length) { clearTimeout(loslassTimer); zeig(e.touches[0]); } }
+    buehne.addEventListener('touchstart', finger, {passive:true});
+    buehne.addEventListener('touchmove', finger, {passive:true});
+    buehne.addEventListener('touchend', los, {passive:true}); buehne.addEventListener('touchcancel', los, {passive:true});
   })();
 
   /* Abschnitte einblenden */
