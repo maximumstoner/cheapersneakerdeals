@@ -129,16 +129,8 @@ header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,e
   .hero .cta .knopf.wa{min-height:58px!important;font-size:19px!important}
   .hero .cta .knopf.tg{min-height:46px;font-size:16px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45);box-shadow:none}
   .hero .micro{font-size:14px;margin-top:10px}
-  .band{display:none}
 }
 
-
-/* Laufband */
-.band{background:var(--rot);color:#fff;overflow:hidden;padding:14px 0;border-top:1px solid rgba(255,255,255,.2)}
-.band .spur{display:flex;width:max-content;animation:lauf 36s linear infinite}
-.band span{font-weight:800;font-size:19px;letter-spacing:.02em;text-transform:uppercase;padding:0 26px;white-space:nowrap;display:flex;align-items:center;gap:26px}
-.band span::after{content:"";width:9px;height:9px;background:#fff;border-radius:50%}
-@keyframes lauf{to{transform:translateX(-50%)}}
 
 /* Abschnitte */
 section.block{padding:clamp(72px,10vw,130px) 0}
@@ -237,7 +229,6 @@ footer .cta .knopf{flex:0 1 auto}
 /* Weniger Bewegung */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .band .spur{animation:none}
   .eyebrow::before{animation:none}
   .rein{opacity:1;transform:none;transition:none}
   .knopf{transition:none}
@@ -305,12 +296,6 @@ footer .cta .knopf{flex:0 1 auto}
   </div>
 </section>
 
-<div class="band" aria-hidden="true">
-  <div class="spur">
-    <span>Sneak ’em cheaper.</span><span>Täglich neue Deals</span><span>20+ Shops</span><span>Preise und Größen geprüft</span><span>0 € für dich</span><span>Österreich und Deutschland</span>
-    <span>Sneak ’em cheaper.</span><span>Täglich neue Deals</span><span>20+ Shops</span><span>Preise und Größen geprüft</span><span>0 € für dich</span><span>Österreich und Deutschland</span>
-  </div>
-</div>
 
 <section class="bildband" aria-label="Schaufenster bei Nacht">
   <img class="hg" src="assets/foto-laden.webp" alt="" loading="lazy" decoding="async">
