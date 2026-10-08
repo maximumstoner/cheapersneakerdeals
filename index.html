@@ -1,31 +1,468 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CHEAPER SNEAKER Deals</title>
-<meta name="description" content="Sneaker im Sale für Österreich und Deutschland. Wir vergleichen die Preise der Shops und zeigen, wo sich Zuschlagen lohnt. Täglich neue Deals auf Telegram und WhatsApp.">
-<meta property="og:type" content="website"><meta property="og:title" content="CHEAPER SNEAKER · Sneaker Sale Radar">
-<meta property="og:description" content="Sneaker im Sale für Österreich und Deutschland. Täglich neue Deals auf Telegram und WhatsApp.">
-<meta property="og:image" content="https://cheapersneakerdeals.de/logo.png"><meta property="og:url" content="https://cheapersneakerdeals.de/">
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CHEAPER SNEAKER · Geprüfte Sneaker-Deals für Österreich und Deutschland</title>
+<meta name="description" content="Wir suchen täglich in mehr als 20 Shops nach echten Sneaker-Deals, prüfen Preis und Größen und schicken dir die besten kostenlos auf WhatsApp oder Telegram.">
+<link rel="canonical" href="https://cheapersneakerdeals.de/">
+<meta name="theme-color" content="#0C0C0C">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_AT">
+<meta property="og:site_name" content="CHEAPER SNEAKER">
+<meta property="og:title" content="CHEAPER SNEAKER · Wir suchen. Wir finden. Du sparst.">
+<meta property="og:description" content="Täglich geprüfte Sneaker-Deals aus mehr als 20 Shops. Kostenlos auf WhatsApp und Telegram.">
+<meta property="og:image" content="https://cheapersneakerdeals.de/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://cheapersneakerdeals.de/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="assets/profil-rund.png">
+<link rel="apple-touch-icon" href="assets/profil-rund.png">
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/dmserif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-:root{--rot:#e10a1f;--bg:#111215;--card:#1b1c21;--text:#f2f2f5;--soft:#9a9aa2}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 420px at 80% -10%,#2a1218 0,transparent 60%),var(--bg);color:var(--text);font:17px/1.55 system-ui,"Segoe UI",sans-serif}
-main{max-width:640px;margin:auto;padding:28px 18px 40px;text-align:center}
-.logo{background:#fff;border-radius:16px;padding:14px 18px;display:inline-block;max-width:100%}.logo img{display:block;width:min(420px,100%);height:auto}
-h1{font-size:28px;line-height:1.2;margin:26px 0 8px}h1 b{color:#ff4d5a}
-p{color:var(--soft);margin:0 auto 18px;max-width:34em}
-video{width:100%;max-width:520px;aspect-ratio:1/1;border-radius:16px;background:#000;margin:6px auto 22px;display:block}
-.knoepfe{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:6px 0 26px}
-.knoepfe a{padding:13px 22px;border-radius:999px;text-decoration:none;font-weight:600;color:#fff}
-.tg{background:#229ed9}.wa{background:#25a244}
-small,footer{color:var(--soft);font-size:13px}footer{margin-top:30px}footer a{color:var(--soft)}
-</style></head>
-<body><main>
-<div class="logo"><img src="logo.png" alt="CHEAPER SNEAKER"></div>
-<h1>Sneaker im Sale. <b>Echt günstig.</b></h1>
-<p>Wir suchen die besten Sneaker-Angebote in Österreich und Deutschland, vergleichen die Preise der Shops und zeigen dir, wo sich Zuschlagen wirklich lohnt.</p>
-<video src="spot.mp4#t=9" controls playsinline muted loop preload="metadata" aria-label="Kurzfilm: Zwei Deal-Jäger im Sneakerstore"></video>
-<div class="knoepfe">
-<a class="tg" href="https://t.me/cheapersneaker">Telegram-Kanal</a>
-<a class="wa" href="https://whatsapp.com/channel/0029Vb8jmDIK0IBaGn8I8T3D">WhatsApp-Kanal</a>
+/* Schriften liegen lokal (kein Aufruf nach außen). Inter und DM Serif Display, SIL Open Font License. */
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 900;font-display:swap;src:url(assets/fonts/inter-latin.woff2) format("woff2")}
+@font-face{font-family:"DM Serif Display";font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/dmserif-latin.woff2) format("woff2")}
+@font-face{font-family:"DM Serif Display";font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/dmserif-italic-latin.woff2) format("woff2")}
+
+:root{
+  --rot:#E10A1F; --schwarz:#0C0C0C; --weiss:#FFFFFF;
+  --grau:#1A1A1C; --linie:rgba(255,255,255,.12); --soft:#C9C9CE; --soft-dunkel:#4A4A50;
+  --wa:#25D366; --tg:#2AABEE;
+  --serif:"DM Serif Display",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --max:1180px; --rand:clamp(18px,4vw,40px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--schwarz);color:var(--weiss);font:18px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;line-height:1;letter-spacing:-.02em}
+p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--rand);padding-right:var(--rand)}
+.serif{font-family:var(--serif);font-weight:400}
+.rot{color:var(--rot)}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:#000;padding:10px 14px;border-radius:8px;z-index:100;font-weight:700}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.hell :focus-visible{outline-color:var(--schwarz)}
+
+/* Knöpfe */
+.knopf{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:64px;padding:14px 26px;border-radius:999px;font-weight:800;font-size:20px;line-height:1.1;text-decoration:none;letter-spacing:-.01em;transition:transform .2s,box-shadow .2s;white-space:nowrap}
+.knopf svg{width:26px;height:26px;flex:none}
+.knopf:hover{transform:translateY(-2px)}
+.knopf:active{transform:translateY(0)}
+.knopf.wa{background:var(--wa);color:#062A18;box-shadow:0 12px 34px rgba(37,211,102,.28)}
+.knopf.tg{background:var(--tg);color:#04202E;box-shadow:0 12px 34px rgba(42,171,238,.28)}
+.knopf.rot{background:var(--rot);color:#fff}
+.knopf.klein{min-height:52px;font-size:17px;padding:10px 20px}
+.cta{display:flex;flex-wrap:wrap;gap:14px}
+.cta .knopf{flex:1 1 240px}
+.micro{font-size:16px;color:var(--soft);margin-top:14px}
+.micro b{color:#fff;font-weight:700}
+
+/* Kopfzeile */
+header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,env(safe-area-inset-top))}
+.kopf .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.marke{display:inline-flex;align-items:center;text-decoration:none}
+.marke img{height:30px;width:auto}
+.kopf nav a{font-weight:700;font-size:16px;text-decoration:none;color:#fff;opacity:.85;padding:10px 0}
+.kopf nav a:hover{opacity:1}
+
+/* Hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;background:var(--schwarz)}
+.hero .film{position:absolute;inset:0;z-index:0}
+.hero .film picture,.hero .film img,.hero .film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media (min-width:901px) and (orientation:landscape){.hero .film img,.hero .film video,.hero .glas .innen img,.hero .glas .innen video{object-position:68% 50%}}
+.hero .film video{opacity:0;transition:opacity 1.2s ease}
+.hero .film video.laeuft{opacity:1}
+.hero .schleier{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(180deg,rgba(12,12,12,.55) 0%,rgba(12,12,12,0) 28%,rgba(12,12,12,0) 45%,rgba(12,12,12,.92) 78%,var(--schwarz) 100%)}
+.hero{--d:230px;--k:1.7}
+.hero .spot{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(circle 170px at var(--px,70%) var(--py,40%),rgba(0,0,0,0) 0,rgba(0,0,0,0) 55%,rgba(12,12,12,.38) 100%)}
+.hero .lupe{position:absolute;z-index:3;left:0;top:0;width:var(--d);height:var(--d);pointer-events:none;will-change:transform;transform:translate(calc(var(--px,70%) - var(--d)/2),calc(var(--py,40%) - var(--d)/2))}
+.hero .griff{position:absolute;left:50%;top:50%;width:calc(var(--d)*.14);height:calc(var(--d)*1.42);margin-left:calc(var(--d)*-.07);transform-origin:50% 0;transform:rotate(-45deg);border-radius:0 0 calc(var(--d)*.06) calc(var(--d)*.06);
+  background:linear-gradient(#141414 0 calc(var(--d)*.52),#2b2b2b calc(var(--d)*.52) calc(var(--d)*.62),#e10a1f calc(var(--d)*.62),#b00818);box-shadow:calc(var(--d)*.02) calc(var(--d)*.03) calc(var(--d)*.1) rgba(0,0,0,.6)}
+.hero .glas{position:absolute;inset:0;border-radius:50%;overflow:hidden;box-sizing:border-box;border:7px solid #141414;background:#000;
+  box-shadow:0 0 0 1.5px rgba(255,255,255,.5),0 0 0 2.5px #000,0 26px 60px rgba(0,0,0,.7),inset 0 0 34px rgba(0,0,0,.45)}
+.hero .glas .innen{position:absolute;left:0;top:0;width:var(--hw,100vw);height:var(--hh,100svh);transform-origin:0 0;
+  transform:translate(calc((var(--d) - 14px)/2 - var(--px,0px)*var(--k)),calc((var(--d) - 14px)/2 - var(--py,0px)*var(--k))) scale(var(--k))}
+.hero .glas .innen img,.hero .glas .innen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .glas .innen video{opacity:0;transition:opacity 1.2s ease}
+.hero .glas .innen video.laeuft{opacity:1}
+.hero .glas::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 24%,rgba(255,255,255,.3),transparent 42%),linear-gradient(160deg,rgba(255,255,255,.1),transparent 55%)}
+.hero .inhalt{position:relative;z-index:4;width:100%;padding-top:140px;padding-bottom:clamp(28px,6vh,64px)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:.9}
+.eyebrow::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--rot);box-shadow:0 0 0 0 rgba(225,10,31,.7);animation:puls 2.2s infinite}
+@keyframes puls{to{box-shadow:0 0 0 14px rgba(225,10,31,0)}}
+.hero h1{font-size:clamp(44px,8.6vw,118px);font-weight:900;letter-spacing:-.035em;text-transform:uppercase;line-height:.92;margin:16px 0 20px;max-width:12ch}
+.hero h1 em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em;color:var(--rot);font-size:1.02em}
+.hero .lead{font-size:clamp(18px,2vw,23px);line-height:1.45;max-width:30em;margin-bottom:26px;color:#fff}
+.hero .lead b{font-weight:800}
+.hero .cta{max-width:720px}
+@media (max-height:700px) and (max-width:600px){.hero .inhalt{padding-top:100px}.hero h1{font-size:clamp(36px,9vw,44px);margin:10px 0 12px}.hero .lead{font-size:17px;margin-bottom:16px}.knopf{min-height:56px;font-size:18px}.hero .micro{display:none}}
+
+/* Laufband */
+.band{background:var(--rot);color:#fff;overflow:hidden;padding:14px 0;border-top:1px solid rgba(255,255,255,.2)}
+.band .spur{display:flex;width:max-content;animation:lauf 36s linear infinite}
+.band span{font-weight:800;font-size:19px;letter-spacing:.02em;text-transform:uppercase;padding:0 26px;white-space:nowrap;display:flex;align-items:center;gap:26px}
+.band span::after{content:"";width:9px;height:9px;background:#fff;border-radius:50%}
+@keyframes lauf{to{transform:translateX(-50%)}}
+
+/* Abschnitte */
+section.block{padding:clamp(72px,10vw,130px) 0}
+.hell{background:var(--weiss);color:var(--schwarz)}
+.hell .micro{color:var(--soft-dunkel)}
+.hell .micro b{color:var(--schwarz)}
+.ueber{font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--rot);margin-bottom:18px;display:block}
+h2.titel{font-size:clamp(38px,6vw,84px);font-weight:900;letter-spacing:-.035em;text-transform:uppercase;line-height:.95;max-width:14ch}
+h2.titel em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em}
+.hell h2.titel em{color:var(--rot)}
+.erkl{font-size:clamp(18px,1.6vw,21px);line-height:1.5;max-width:34em;margin-top:22px;color:var(--soft)}
+.hell .erkl{color:#333}
+
+/* Versprechen */
+.versprechen .raster{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.versprechen .lupe-bild{width:min(100%,520px);margin:0 auto}
+.versprechen .lupe-bild img{width:100%;height:auto}
+.punkte{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:54px}
+.punkt{border-top:3px solid var(--schwarz);padding-top:18px}
+.punkt .zahl{font-family:var(--serif);font-size:clamp(48px,5vw,72px);line-height:1;letter-spacing:-.02em}
+.punkt .zahl small{font-family:var(--sans);font-weight:800;font-size:.38em;letter-spacing:0;vertical-align:middle;margin-left:4px}
+.punkt h3{font-size:22px;font-weight:800;margin:10px 0 8px;letter-spacing:-.01em;line-height:1.15}
+.punkt p{font-size:18px;color:#333}
+
+/* So geht's */
+.schritte{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:54px}
+.schritt{background:var(--grau);border:1px solid var(--linie);border-radius:22px;padding:28px 26px 30px;position:relative;overflow:hidden;min-height:260px;display:flex;flex-direction:column;justify-content:flex-end}
+.schritt .nr{position:absolute;top:10px;right:18px;font-family:var(--serif);font-style:italic;font-size:120px;line-height:1;color:rgba(255,255,255,.07)}
+.schritt h3{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;line-height:1.1}
+.schritt h3 span{color:var(--rot);font-family:var(--serif);font-style:italic;font-weight:400;margin-right:10px}
+.schritt p{color:var(--soft);font-size:18px}
+
+/* Regeln */
+.regeln{position:relative;overflow:hidden}
+.regeln .ring{position:absolute;right:-18vw;top:-10vw;width:62vw;height:62vw;border-radius:50%;border:2px solid rgba(255,255,255,.08);pointer-events:none}
+.regeln .ring::after{content:"";position:absolute;inset:14%;border-radius:50%;border:2px solid rgba(225,10,31,.18)}
+.regeln ol{list-style:none;margin:54px 0 0;padding:0;border-top:1px solid var(--linie)}
+.regeln li{display:grid;grid-template-columns:72px 1fr;gap:18px;align-items:baseline;padding:30px 0;border-bottom:1px solid var(--linie)}
+.regeln li .n{font-family:var(--serif);font-style:italic;font-size:44px;color:var(--rot);line-height:1}
+.regeln li h3{font-size:clamp(26px,3.2vw,44px);font-weight:900;letter-spacing:-.025em;line-height:1.05;text-transform:uppercase}
+.regeln li h3 em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em;color:#fff}
+.regeln li p{color:var(--soft);font-size:18px;margin-top:10px;max-width:40em}
+
+/* Kanalwahl */
+.kanal .karten{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:54px}
+.karte{border-radius:26px;padding:34px 30px 30px;background:var(--grau);border:1px solid var(--linie);display:flex;flex-direction:column;gap:18px}
+.karte h3{font-size:30px;font-weight:900;letter-spacing:-.02em;line-height:1}
+.karte p{color:var(--soft);font-size:18px;flex:1}
+.karte .knopf{width:100%}
+.kanal .micro{text-align:center;margin-top:26px;font-size:17px}
+
+/* Zitat */
+.zitat blockquote{margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(30px,4.4vw,60px);line-height:1.12;letter-spacing:-.015em;max-width:20ch}
+.zitat blockquote strong{font-style:normal;color:var(--rot);font-weight:400}
+.zitat figcaption{margin-top:26px;font-weight:700;font-size:18px}
+.zitat figcaption span{font-weight:400;color:#555}
+
+/* Fuß */
+footer{padding:64px 0 max(40px,env(safe-area-inset-bottom));border-top:1px solid var(--linie);background:var(--schwarz)}
+footer .oben{display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between}
+footer .marke img{height:26px}
+footer .links{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:17px;color:var(--soft);margin-top:34px}
+footer .links a{color:#fff;text-decoration:underline;text-underline-offset:4px}
+footer .klein{font-size:15px;color:var(--soft);margin-top:18px;max-width:60em}
+footer .cta .knopf{flex:0 1 auto}
+
+/* Feste Handy-Leiste, erscheint sobald die Hero-Knöpfe aus dem Bild sind */
+.leiste{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;gap:10px;padding:10px 12px max(10px,env(safe-area-inset-bottom));background:rgba(12,12,12,.9);backdrop-filter:blur(12px);border-top:1px solid var(--linie);transform:translateY(110%);transition:transform .3s}
+.leiste.an{transform:none}
+.leiste .knopf{flex:1;min-height:54px;font-size:17px;padding:8px 10px}
+.leiste .knopf svg{width:22px;height:22px}
+@media (max-width:760px){.leiste{display:flex}}
+
+/* Einblenden beim Scrollen */
+.rein{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rein.da{opacity:1;transform:none}
+
+/* Handy */
+@media (max-width:900px){
+  .versprechen .raster{grid-template-columns:1fr}
+  .punkte,.schritte,.kanal .karten{grid-template-columns:1fr}
+  .regeln li{grid-template-columns:48px 1fr;padding:24px 0}
+  .regeln li .n{font-size:32px}
+  .schritt{min-height:0;padding-top:70px}
+}
+@media (max-width:600px){
+  .kopf nav{display:none}
+  .cta .knopf{flex-basis:100%}
+  .eyebrow{font-size:13px;letter-spacing:.1em}
+  .hero{--d:150px;--k:1.6}
+  .hero .glas{border-width:5px}
+  .hero .glas .innen{transform:translate(calc((var(--d) - 10px)/2 - var(--px,0px)*var(--k)),calc((var(--d) - 10px)/2 - var(--py,0px)*var(--k))) scale(var(--k))}
+  .hero .spot{background:radial-gradient(circle 110px at var(--px,50%) var(--py,25%),rgba(0,0,0,0) 0,rgba(0,0,0,0) 55%,rgba(12,12,12,.38) 100%)}
+}
+}
+
+/* Weniger Bewegung */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .band .spur{animation:none}
+  .eyebrow::before{animation:none}
+  .rein{opacity:1;transform:none;transition:none}
+  .knopf{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#kanal">Direkt zur Kanalwahl</a>
+
+<header class="kopf">
+  <div class="wrap">
+    <a class="marke" href="/" aria-label="CHEAPER SNEAKER, Startseite">
+      <!-- Logo austauschen: nur diese eine Datei ersetzen (assets/wortmarke-weiss.webp), gleiche Proportion -->
+      <img src="assets/wortmarke-weiss.webp" alt="CHEAPER SNEAKER" width="1380" height="432">
+    </a>
+    <nav aria-label="Kurzwahl"><a href="#kanal">Zum Kanal ↓</a></nav>
+  </div>
+</header>
+
+<main id="start">
+<section class="hero" id="hero">
+  <div class="film" aria-hidden="true">
+    <picture>
+      <source media="(orientation: portrait)" srcset="assets/hero-hoch.webp">
+      <img src="assets/hero-quer.webp" alt="" width="1280" height="720" fetchpriority="high" decoding="async">
+    </picture>
+    <!-- Video wird erst nach dem ersten Bild per Script geladen (Schleife, ohne Ton). -->
+    <video muted loop playsinline preload="none" tabindex="-1"></video>
+  </div>
+  <div class="schleier" aria-hidden="true"></div>
+  <div class="spot" aria-hidden="true"></div>
+  <div class="lupe" aria-hidden="true"><div class="griff"></div><div class="glas"><div class="innen"><img src="assets/hero-quer.webp" alt="" width="1280" height="720" decoding="async"></div></div></div>
+
+  <div class="wrap inhalt">
+    <span class="eyebrow">Sneaker-Deals für Österreich und Deutschland</span>
+    <h1>Wir suchen.<br>Wir finden.<br><em>Du sparst.</em></h1>
+    <p class="lead">Täglich geprüfte Sneaker-Deals aus <b>mehr als 20 Shops</b>. Kostenlos auf WhatsApp oder Telegram.</p>
+    <div class="cta">
+      <a class="knopf wa" style="flex:1 1 100%;min-height:72px;font-size:22px" data-knopf="hero-whatsapp" href="https://whatsapp.com/channel/0029Vb8jmDIK0IBaGn8I8T3D" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 0 1 12 4zm-3.2 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.2 2.4.9 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1-.2.3-.8 1-1 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.4z"/></svg>
+        WhatsApp-Kanal folgen
+      </a>
+      <a class="knopf tg klein" style="flex:1 1 100%" data-knopf="hero-telegram" href="https://t.me/cheapersneaker" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.6 3.3 2.9 10.5c-1.1.4-1.1 1.1-.2 1.4l4.6 1.4 1.8 5.5c.2.6.4.8.9.8.5 0 .7-.2 1-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.2-1.7zM8.4 13.1l9.9-6.3c.5-.3.9-.1.6.2L10.5 14.6l-.3 3.6-1.8-5.1z"/></svg>
+        Telegram-Kanal
+      </a>
+    </div>
+    <p class="micro"><b>0 € für dich.</b> Keine Anmeldung bei uns. Jederzeit wieder raus.</p>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true">
+  <div class="spur">
+    <span>Sneak ’em cheaper.</span><span>Täglich neue Deals</span><span>20+ Shops</span><span>Preise und Größen geprüft</span><span>0 € für dich</span><span>Österreich und Deutschland</span>
+    <span>Sneak ’em cheaper.</span><span>Täglich neue Deals</span><span>20+ Shops</span><span>Preise und Größen geprüft</span><span>0 € für dich</span><span>Österreich und Deutschland</span>
+  </div>
 </div>
-<p><small>Täglich neue Deals direkt in deinem Kanal. Diese Seite ist im Aufbau, bald mit mehr.</small></p>
-<footer>Preise und Verfügbarkeit ohne Gewähr, maßgeblich ist der jeweilige Shop. · <a href="/offenlegung/">Offenlegung</a></footer>
-</main></body></html>
+
+<section class="block hell versprechen" id="versprechen">
+  <div class="wrap">
+    <div class="raster">
+      <div class="rein">
+        <span class="ueber">Was wir machen</span>
+        <h2 class="titel">Echte Rabatte.<br>Nicht nur<br><em>rote Zahlen.</em></h2>
+        <p class="erkl">Viele Shops schreiben „Sale“ und meinen „fast normal“. Wir vergleichen den Preis mit anderen Shops und prüfen, ob deine Größe wirklich da ist. Erst dann landet ein Deal im Kanal.</p>
+      </div>
+      <div class="lupe-bild rein">
+        <img src="assets/lupe.webp" alt="Große Lupe, darunter ein weißer Sneaker mit rotem Sale-Anhänger" width="1000" height="885" loading="lazy" decoding="async">
+      </div>
+    </div>
+    <div class="punkte">
+      <div class="punkt rein">
+        <div class="zahl">20<small>+ Shops</small></div>
+        <h3>Wir suchen jeden Tag.</h3>
+        <p>Mehr als 20 Online-Shops, die nach Österreich und Deutschland liefern. Automatisch, mehrmals täglich.</p>
+      </div>
+      <div class="punkt rein">
+        <div class="zahl">2<small>× geprüft</small></div>
+        <h3>Preis und Größen stimmen.</h3>
+        <p>Vor jedem Post schauen wir noch einmal auf die Shop-Seite: Preis, Verfügbarkeit, Größen. Was wackelt, posten wir nicht.</p>
+      </div>
+      <div class="punkt rein">
+        <div class="zahl">0<small>€ für dich</small></div>
+        <h3>Kostenlos, ohne Haken.</h3>
+        <p>Du folgst einem Kanal, mehr nicht. Keine Anmeldung bei uns, keine Werbung in deinem Postfach, jederzeit wieder raus.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="so-gehts">
+  <div class="wrap">
+    <div class="rein">
+      <span class="ueber">So geht’s</span>
+      <h2 class="titel">Drei Schritte.<br><em>Dann läuft’s.</em></h2>
+    </div>
+    <div class="schritte">
+      <article class="schritt rein"><span class="nr" aria-hidden="true">1</span><h3><span>1</span>Kanal wählen</h3><p>WhatsApp oder Telegram, je nachdem, was du ohnehin benutzt. Ein Klick, fertig.</p></article>
+      <article class="schritt rein"><span class="nr" aria-hidden="true">2</span><h3><span>2</span>Deals bekommen</h3><p>Täglich neue Sneaker-Deals mit Foto, Preis, freien Größen und dem Link zum Shop.</p></article>
+      <article class="schritt rein"><span class="nr" aria-hidden="true">3</span><h3><span>3</span>Im Shop kaufen</h3><p>Du kaufst direkt beim Shop, so wie immer. Wir zeigen nur den Weg zum besseren Preis.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="block regeln" id="regeln">
+  <span class="ring" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="rein">
+      <span class="ueber">Unsere Regeln</span>
+      <h2 class="titel">Kurz. Streng.<br><em>Ehrlich.</em></h2>
+      <p class="erkl">Ein Deal-Kanal ist nur so gut wie sein schlechtester Post. Deshalb halten wir uns an fünf Regeln, jeden Tag.</p>
+    </div>
+    <ol>
+      <li class="rein"><span class="n" aria-hidden="true">1</span><div><h3>„Sale“ heißt nicht <em>günstig.</em></h3><p>Ein roter Streichpreis sagt wenig. Wir vergleichen den Preis mit anderen Shops. Nur was wirklich darunter liegt, zählt als Deal.</p></div></li>
+      <li class="rein"><span class="n" aria-hidden="true">2</span><div><h3>Keine Größe, <em>kein Deal.</em></h3><p>Vor dem Posten prüfen wir, welche Größen wirklich da sind. Ein Schnäppchen in Größe 36 nützt dir in 44 nichts.</p></div></li>
+      <li class="rein"><span class="n" aria-hidden="true">3</span><div><h3>Lieber drei gute <em>als zehn halbe.</em></h3><p>Wir posten mehrmals am Tag, aber nur, was die Prüfung besteht. Kein Füllmaterial, keine Dauer-Pings.</p></div></li>
+      <li class="rein"><span class="n" aria-hidden="true">4</span><div><h3>Vorbei ist <em>vorbei.</em></h3><p>Ist ein Deal ausverkauft oder teurer geworden, markieren wir den Post als abgelaufen. Du läufst nicht ins Leere.</p></div></li>
+      <li class="rein"><span class="n" aria-hidden="true">5</span><div><h3>Du kaufst im Shop, <em>nicht bei uns.</em></h3><p>Wir verkaufen nichts, sammeln keine Daten und schicken keine Werbung. Du bekommst einen Link, der Rest läuft wie immer.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="block kanal" id="kanal">
+  <div class="wrap">
+    <div class="rein">
+      <span class="ueber">Kanalwahl</span>
+      <h2 class="titel">Wähl deinen Kanal.<br><em>Der Rest kommt von selbst.</em></h2>
+    </div>
+    <div class="karten">
+      <div class="karte rein">
+        <h3>WhatsApp</h3>
+        <p>Für die meisten der einfachste Weg: Du hast WhatsApp schon. Kanal folgen, fertig. Andere Mitglieder sehen deine Nummer nicht.</p>
+        <a class="knopf wa" data-knopf="kanal-whatsapp" href="https://whatsapp.com/channel/0029Vb8jmDIK0IBaGn8I8T3D" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 0 1 12 4zm-3.2 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.2 2.4.9 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1-.2.3-.8 1-1 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.4z"/></svg>
+          WhatsApp-Kanal folgen
+        </a>
+      </div>
+      <div class="karte rein">
+        <h3>Telegram</h3>
+        <p>Wenn du lieber Telegram nutzt: gleiche Deals, gleiche Zeit, alles in einem Kanal, ohne Gruppen-Geplauder.</p>
+        <a class="knopf tg" data-knopf="kanal-telegram" href="https://t.me/cheapersneaker" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.6 3.3 2.9 10.5c-1.1.4-1.1 1.1-.2 1.4l4.6 1.4 1.8 5.5c.2.6.4.8.9.8.5 0 .7-.2 1-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.2-1.7zM8.4 13.1l9.9-6.3c.5-.3.9-.1.6.2L10.5 14.6l-.3 3.6-1.8-5.1z"/></svg>
+          Telegram-Kanal öffnen
+        </a>
+      </div>
+    </div>
+    <p class="micro"><b>Kostenlos.</b> Keine Anmeldung bei uns. Jederzeit wieder raus, mit einem Tipp.</p>
+  </div>
+</section>
+
+<section class="block hell zitat" id="markus">
+  <div class="wrap">
+    <figure class="rein" style="margin:0">
+      <blockquote>„Ich zahle ungern den vollen Preis. Also habe ich mir ein Suchprogramm gebaut, eigentlich nur für mich. <strong>Aber gute Preise teilt man gern.</strong>“</blockquote>
+      <figcaption>Markus, Wien <span>· macht CHEAPER SNEAKER</span></figcaption>
+    </figure>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="oben">
+      <a class="marke" href="/" aria-label="CHEAPER SNEAKER"><img src="assets/wortmarke-weiss.webp" alt="CHEAPER SNEAKER" width="1380" height="432" loading="lazy"></a>
+      <div class="cta">
+        <a class="knopf wa klein" data-knopf="fuss-whatsapp" href="https://whatsapp.com/channel/0029Vb8jmDIK0IBaGn8I8T3D" rel="noopener">WhatsApp-Kanal</a>
+        <a class="knopf tg klein" data-knopf="fuss-telegram" href="https://t.me/cheapersneaker" rel="noopener">Telegram-Kanal</a>
+      </div>
+    </div>
+    <nav class="links" aria-label="Rechtliches">
+      <a href="/offenlegung/">Offenlegung</a>
+      <a href="/datenschutz/">Datenschutz</a>
+      <span>Ein Projekt von CHEAPER Media</span>
+    </nav>
+    <p class="klein">Keine Cookies, keine fremden Tracker. Preise und Verfügbarkeit laut jeweiligem Shop, Änderungen jederzeit möglich. Wir sind unabhängig und mit keinem Shop verbunden.</p>
+  </div>
+</footer>
+
+<div class="leiste" id="leiste" aria-hidden="true">
+  <a class="knopf wa" data-knopf="leiste-whatsapp" href="https://whatsapp.com/channel/0029Vb8jmDIK0IBaGn8I8T3D" rel="noopener" tabindex="-1">WhatsApp</a>
+  <a class="knopf tg" data-knopf="leiste-telegram" href="https://t.me/cheapersneaker" rel="noopener" tabindex="-1">Telegram</a>
+</div>
+
+<script>
+(function(){
+  var ruhig = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hero = document.getElementById('hero');
+
+  /* Hero-Video: erst nach dem ersten Bild, nie bei Datensparmodus oder "Bewegung reduzieren". */
+  function video(){
+    var v = hero.querySelector('video');
+    if (!v || ruhig || (navigator.connection && navigator.connection.saveData)) return;
+    var hoch = matchMedia('(orientation: portrait)').matches ? 'hero-hoch' : 'hero-quer';
+    [['webm','video/webm'],['mp4','video/mp4']].forEach(function(t){
+      var s = document.createElement('source'); s.src = 'assets/' + hoch + '.' + t[0]; s.type = t[1]; v.appendChild(s);
+    });
+    v.addEventListener('playing', function(){ v.classList.add('laeuft'); }, {once:true});
+    v.load(); var p = v.play(); if (p && p.catch) p.catch(function(){});
+  }
+  if (document.readyState === 'complete') setTimeout(video, 300); else addEventListener('load', function(){ setTimeout(video, 300); });
+
+  /* Lupe: zeigt den Ausschnitt darunter vergrößert, folgt Maus oder Finger, treibt sonst langsam von selbst. */
+  (function(){
+    var innen = hero.querySelector('.innen'), bild = innen.querySelector('img'), heroBild = hero.querySelector('.film img');
+    var w = 0, h = 0, handy = false, zx = 0, zy = 0, ax = 0, ay = 0, aktiv = false, t0 = performance.now();
+    function mass(){ var r = hero.getBoundingClientRect(); w = r.width; h = r.height; handy = w <= 600; hero.style.setProperty('--hw', w + 'px'); hero.style.setProperty('--hh', h + 'px'); if (heroBild.currentSrc && bild.src !== heroBild.currentSrc) bild.src = heroBild.currentSrc; }
+    function setz(){ hero.style.setProperty('--px', ax.toFixed(1) + 'px'); hero.style.setProperty('--py', ay.toFixed(1) + 'px'); }
+    function ziel(t){ var s = (t - t0) / 1000; if (handy) { zx = w * (0.52 + 0.14 * Math.sin(s * .35)); zy = h * (0.25 + 0.05 * Math.sin(s * .5 + 1)); } else { zx = w * (0.72 + 0.09 * Math.sin(s * .33)); zy = h * (0.42 + 0.10 * Math.sin(s * .47 + 1)); } }
+    function tick(t){ if (!aktiv) ziel(t); ax += (zx - ax) * .1; ay += (zy - ay) * .1; setz(); requestAnimationFrame(tick); }
+    mass(); ziel(t0); ax = zx; ay = zy; setz();
+    heroBild.addEventListener('load', mass); addEventListener('resize', mass);
+    if (ruhig) return;
+    requestAnimationFrame(tick);
+    function zeig(e){ var r = hero.getBoundingClientRect(); zx = e.clientX - r.left; zy = e.clientY - r.top; aktiv = true; }
+    hero.addEventListener('pointermove', function(e){ if (e.pointerType === 'touch' && !aktiv) return; zeig(e); });
+    hero.addEventListener('pointerdown', function(e){ if (!e.target.closest('a')) zeig(e); });
+    hero.addEventListener('pointerleave', function(){ aktiv = false; });
+    /* Am PC läuft in der Lupe dasselbe Video wie dahinter. */
+    var v = hero.querySelector('.film video');
+    if (v && matchMedia('(pointer:fine)').matches && w > 900) {
+      v.addEventListener('playing', function(){
+        var v2 = document.createElement('video'); v2.muted = true; v2.loop = true; v2.playsInline = true; v2.setAttribute('aria-hidden', 'true');
+        v2.src = v.currentSrc; innen.appendChild(v2); v2.addEventListener('playing', function(){ v2.classList.add('laeuft'); }, {once:true});
+        v2.currentTime = v.currentTime; var p = v2.play(); if (p && p.catch) p.catch(function(){});
+      }, {once:true});
+    }
+  })();
+
+  /* Abschnitte einblenden */
+  if ('IntersectionObserver' in window && !ruhig) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('da'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.rein').forEach(function(el){ io.observe(el); });
+  } else { document.querySelectorAll('.rein').forEach(function(el){ el.classList.add('da'); }); }
+
+  /* Feste Leiste am Handy, sobald die Hero-Knöpfe weg sind */
+  var leiste = document.getElementById('leiste'), cta = hero.querySelector('.cta');
+  if ('IntersectionObserver' in window && leiste && cta) {
+    new IntersectionObserver(function(es){ var weg = !es[0].isIntersecting && es[0].boundingClientRect.top < 0; leiste.classList.toggle('an', weg); leiste.setAttribute('aria-hidden', weg ? 'false' : 'true'); leiste.querySelectorAll('a').forEach(function(a){ a.tabIndex = weg ? 0 : -1; }); }).observe(cta);
+  }
+
+  /* Klickzählung (ohne Cookies, ohne Kennung): nur aktiv, wenn eine Zähl-Adresse eingetragen ist.
+     Gesendet wird: welcher Knopf, utm_source/medium/campaign aus der Anzeige, Uhrzeit. Nichts Persönliches. */
+  var ZAEHLER = '';
+  if (ZAEHLER && navigator.sendBeacon) {
+    var q = new URLSearchParams(location.search);
+    document.querySelectorAll('a[data-knopf]').forEach(function(a){
+      a.addEventListener('click', function(){
+        navigator.sendBeacon(ZAEHLER, JSON.stringify({knopf: a.dataset.knopf, quelle: q.get('utm_source') || '', medium: q.get('utm_medium') || '', kampagne: q.get('utm_campaign') || '', inhalt: q.get('utm_content') || '', zeit: new Date().toISOString()}));
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
