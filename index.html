@@ -280,6 +280,36 @@ footer .cta .knopf{flex:0 1 auto}
 .bildband p strong{font-style:normal;color:var(--rot);font-weight:400}
 .bildband small{display:block;margin-top:14px;font-size:16px;color:#d6d6da;font-family:var(--sans);font-style:normal}
 @media (max-width:600px){.bildband{min-height:52vh}}
+/* Kanalnachricht (schematisch) */
+.nachricht .raster{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.msg{background:var(--grau);border-radius:26px;padding:20px 20px 22px;color:#fff;box-shadow:0 30px 60px rgba(0,0,0,.18);max-width:460px;margin:0 auto;width:100%}
+.msg .kopfzeile{display:flex;align-items:center;gap:12px;padding:2px 4px 16px}
+.msg .kopfzeile img{width:42px;height:42px;border-radius:50%}
+.msg .kopfzeile b{display:block;font-size:17px;line-height:1.2}
+.msg .kopfzeile small{color:var(--soft);font-size:14px}
+.msg .blase{background:#26262a;border-radius:18px 18px 18px 6px;padding:10px 10px 16px}
+.msg .foto{aspect-ratio:4/3;border-radius:12px;background:repeating-linear-gradient(135deg,#2e2e33 0 14px,#27272b 14px 28px);display:flex;align-items:center;justify-content:center;color:var(--soft);font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.msg .zeile{padding:5px 8px;font-size:18px;line-height:1.4}
+.msg .zeile.gross{font-weight:800;font-size:20px}
+.msg .foto{background:#fff}
+.msg .foto img{width:62%;height:auto;image-rendering:pixelated}
+.msg .platz{color:#FF6B78;font-style:normal;font-weight:600}
+.msg .link{padding:9px 8px 0;font-size:18px;text-decoration:underline;text-underline-offset:3px;color:#fff}
+.nachricht .fussnote{margin:18px auto 0;max-width:460px;font-size:15px;color:var(--soft-dunkel)}
+
+/* FAQ */
+.faq .raster{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:start}
+.faq details{border-top:1px solid rgba(0,0,0,.16)}
+.faq details:last-child{border-bottom:1px solid rgba(0,0,0,.16)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;font-weight:800;font-size:clamp(20px,2.1vw,26px);letter-spacing:-.015em;line-height:1.2}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--serif);font-size:38px;line-height:1;color:var(--rot);flex:none}
+.faq details[open] summary::after{content:"\2013"}
+.faq details p{margin:0 0 26px;max-width:40em;color:#333;font-size:18px}
+.faq details a{color:var(--rot);text-underline-offset:3px}
+@media (max-width:900px){
+  .nachricht .raster,.faq .raster{grid-template-columns:1fr;gap:34px}
+}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -387,6 +417,33 @@ footer .cta .knopf{flex:0 1 auto}
   </div>
 </section>
 
+<section class="block hell nachricht" id="nachricht">
+  <div class="wrap">
+    <div class="raster">
+      <div class="rein">
+        <span class="ueber">Ein Blick in den Kanal</span>
+        <h2 class="titel">Alles Wichtige.<br><em>In einer Nachricht.</em></h2>
+        <p class="erkl">Jeder Deal kommt als eigene Nachricht: Foto, Preis im Vergleich, freie Größen, Lieferland und der Link zum Shop. Mehr brauchst du nicht, um zu entscheiden. Die echten Schuhe siehst du im Kanal.</p>
+      </div>
+      <div class="rein">
+        <div class="msg" role="img" aria-label="Schematische Darstellung einer Deal-Nachricht mit Foto, Preis, Rabatt, freien Größen, Lieferland und Link">
+          <div class="kopfzeile"><img src="assets/profil-rund.png" alt="" width="42" height="42" loading="lazy" decoding="async"><div><b>CHEAPER SNEAKER</b><small>Kanal</small></div></div>
+          <div class="blase">
+            <div class="foto"><img src="assets/beispiel-schuh-pixel.webp" alt="" width="616" height="260" loading="lazy" decoding="async"></div>
+            <div class="zeile gross">👟 <em class="platz">[Modell]</em></div>
+            <div class="zeile"><em class="platz">[Shop]</em>: <em class="platz">[Preis]</em> statt <em class="platz">[Vergleichspreis]</em></div>
+            <div class="zeile">🔥 also <em class="platz">[X]</em> % günstiger</div>
+            <div class="zeile">📏 Freie Größen: <em class="platz">[Größen]</em></div>
+            <div class="zeile">📦 Lieferung: <em class="platz">[Land]</em></div>
+            <div class="link">Link zum Shop</div>
+          </div>
+        </div>
+        <p class="fussnote">Schematisch dargestellt, kein echtes Angebot, das Bild ist ein bewusst stark verpixelter Beispielschuh. Die roten Platzhalter füllen wir bei jedem Deal mit den geprüften Angaben.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="block regeln foto-hg" id="regeln">
   <img class="hg" src="assets/foto-beton.webp" alt="" loading="lazy" decoding="async">
   <span class="ring" aria-hidden="true"></span>
@@ -403,6 +460,35 @@ footer .cta .knopf{flex:0 1 auto}
       <li class="rein"><span class="n" aria-hidden="true">4</span><div><h3>Vorbei ist <em>vorbei.</em></h3><p>Ist ein Deal ausverkauft oder teurer geworden, markieren wir den Post als abgelaufen. Du läufst nicht ins Leere.</p></div></li>
       <li class="rein"><span class="n" aria-hidden="true">5</span><div><h3>Du kaufst im Shop, <em>nicht bei uns.</em></h3><p>Wir verkaufen nichts, sammeln keine Daten und schicken keine Werbung. Du bekommst einen Link, der Rest läuft wie immer.</p></div></li>
     </ol>
+  </div>
+</section>
+
+<section class="block hell faq" id="fragen">
+  <div class="wrap">
+    <div class="raster">
+      <div class="rein">
+        <span class="ueber">Gut zu wissen</span>
+        <h2 class="titel">Noch Fragen?<br><em>Kurz beantwortet.</em></h2>
+      </div>
+      <div class="rein">
+        <details>
+          <summary>Kostet das etwas?</summary>
+          <p>Nein. Du folgst einem Kanal, mehr nicht. Wir verkaufen nichts und schicken keine Werbung in dein Postfach. Gekauft wird direkt im Shop, so wie immer.</p>
+        </details>
+        <details>
+          <summary>Muss ich mich anmelden?</summary>
+          <p>Nicht bei uns. Du öffnest WhatsApp oder Telegram, tippst auf „Folgen“, fertig. Jederzeit wieder raus, mit einem Tipp.</p>
+        </details>
+        <details>
+          <summary>Sind die Deals noch da, wenn ich klicke?</summary>
+          <p>Wir prüfen Preis, Verfügbarkeit und Größen vor dem Posten und kontrollieren später noch einmal. Wird ein Deal ausverkauft oder teurer, markieren wir den Post als abgelaufen. Preise und Bestände können sich trotzdem jederzeit ändern: Maßgeblich ist, was im Shop steht, wenn du kaufst.</p>
+        </details>
+        <details>
+          <summary>Wer steckt dahinter?</summary>
+          <p>Markus aus Wien. CHEAPER SNEAKER ist ein privates Projekt, das aus einem Suchprogramm für den eigenen Gebrauch entstanden ist. Mehr steht in der <a href="/offenlegung/">Offenlegung</a>.</p>
+        </details>
+      </div>
+    </div>
   </div>
 </section>
 
