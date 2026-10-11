@@ -298,7 +298,8 @@ footer .cta .knopf{flex:0 1 auto}
 .nachricht .fussnote{margin:18px auto 0;max-width:460px;font-size:15px;color:var(--soft-dunkel)}
 .handy-bild{margin:0 auto;max-width:340px;width:100%;border-radius:34px;padding:10px;background:#111;box-shadow:0 30px 60px rgba(0,0,0,.25)}
 .handy-bild img{display:block;width:100%;height:auto;border-radius:26px}
-.keine-gruppe{font-size:19px;line-height:1.5;margin:0 0 26px;padding:16px 18px;border-left:4px solid var(--rot,#E30613);background:rgba(0,0,0,.04);border-radius:6px}
+@media (max-width:700px){.handy-bild{max-width:260px;border-radius:28px;padding:8px}.handy-bild img{border-radius:22px}.keine-gruppe{font-size:17px}}
+.keine-gruppe{font-size:19px;line-height:1.5;margin:0 auto 26px;max-width:460px;padding:16px 18px;border-left:4px solid var(--rot,#E30613);background:rgba(0,0,0,.04);border-radius:6px}
 
 /* FAQ */
 .faq .raster{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:start}
@@ -370,12 +371,12 @@ footer .cta .knopf{flex:0 1 auto}
   <div class="wrap">
     <div class="raster">
       <div class="rein">
-        <p class="keine-gruppe"><b>Keine Gruppe.</b> Im WhatsApp-Kanal liest du nur mit: Andere Follower sehen deine Nummer nicht, und es klingelt nur, wenn du willst.</p>
         <span class="ueber">Ein Blick in den Kanal</span>
         <h2 class="titel">Alles Wichtige.<br><em>In einer Nachricht.</em></h2>
         <p class="erkl">Jeder Deal kommt als eigene Nachricht: Foto, Preis im Vergleich, freie Größen, Lieferland und der Link zum Shop. Mehr brauchst du nicht, um zu entscheiden. Die echten Schuhe siehst du im Kanal.</p>
       </div>
       <div class="rein">
+        <p class="keine-gruppe"><b>Keine Gruppe.</b> Im WhatsApp-Kanal liest du nur mit: Andere Follower sehen deine Nummer nicht, und es klingelt nur, wenn du willst.</p>
         <figure class="handy-bild">
           <img src="assets/kanal-screenshot.webp" alt="Echter Post aus unserem WhatsApp-Kanal: verpixelter Schuh, 78 Euro, sonst meist um 179 Euro, also 56 % günstiger, Größen 40 bis 46.5, mit Link zum Shop" width="900" height="1655" loading="lazy" decoding="async">
         </figure>
