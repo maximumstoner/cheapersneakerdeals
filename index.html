@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CHEAPER SNEAKER · Geprüfte Sneaker-Deals für Österreich und Deutschland</title>
-<meta name="description" content="Kein Shop, sondern ein kostenloser Deal-Kanal: Wir prüfen täglich über 20 Shops und schicken dir echte Sneaker-Deals auf WhatsApp oder Telegram.">
+<meta name="description" content="Kostenloser Deal-Kanal für Sneaker: Wir prüfen täglich mehr als 20 Shops und schicken dir echte Sneaker-Deals auf WhatsApp oder Telegram. Kein Shop, gekauft wird beim Händler.">
 <link rel="canonical" href="https://cheapersneakerdeals.de/">
 <meta name="theme-color" content="#0C0C0C">
 <meta property="og:type" content="website">
@@ -21,6 +21,7 @@
 <link rel="apple-touch-icon" href="assets/profil-rund.png">
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/dmserif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.className+=" js"</script>
 <style>
 /* Schriften liegen lokal (kein Aufruf nach außen). Inter und DM Serif Display, SIL Open Font License. */
 @font-face{font-family:"Inter";font-style:normal;font-weight:400 900;font-display:swap;src:url(assets/fonts/inter-latin.woff2) format("woff2")}
@@ -139,6 +140,9 @@ header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,e
 .hero .lead{font-size:clamp(18px,2vw,23px);line-height:1.45;max-width:30em;margin-bottom:26px;color:#fff}
 .hero .lead b{font-weight:800}
 .hero .cta{max-width:720px}
+.hero .kein-shop{margin:14px 0 0;font-weight:800;font-size:clamp(16px,1.5vw,19px);color:#fff}
+.hero .kein-shop b{color:var(--rot)}
+.mini-post{display:none}
 @media (max-width:600px){
   .hero{display:block;min-height:0;--d:140px;--k:1.6}
   .hero .film{position:relative;inset:auto;height:46svh;min-height:300px;max-height:420px}
@@ -146,6 +150,10 @@ header.kopf{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:max(16px,e
   .hero .schleier{background:linear-gradient(180deg,rgba(12,12,12,.35) 0%,rgba(12,12,12,0) 30%,rgba(12,12,12,0) 70%,var(--schwarz) 100%)}
   .hero .inhalt{padding-top:6px;padding-bottom:22px}
   .hero .eyebrow{display:none}
+  .hero .kein-shop{font-size:15px;margin:0 0 10px}
+  .mini-post{display:flex;flex-direction:column;gap:2px;position:absolute;z-index:31;left:var(--rand);bottom:16px;max-width:76%;padding:8px 11px 9px;border-radius:12px 12px 12px 4px;background:#144D37;color:#fff;font-size:12.5px;line-height:1.35;box-shadow:0 8px 24px rgba(0,0,0,.55)}
+  .mini-post small{font-size:10.5px;color:#9fd8bd;letter-spacing:.02em}
+  .mini-post>b{font-size:16px}
   .hero h1{font-size:clamp(34px,9.6vw,42px);margin:0 0 10px}
   .hero .lead{font-size:17px;line-height:1.4;margin-bottom:16px}
   .hero .cta{gap:10px}
@@ -236,8 +244,8 @@ footer .cta .knopf{flex:0 1 auto}
 @media (max-width:760px){.leiste{display:flex}}
 
 /* Einblenden beim Scrollen */
-.rein{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.rein.da{opacity:1;transform:none}
+.js .rein{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.js .rein.da{opacity:1;transform:none}
 
 /* Handy */
 @media (max-width:900px){
@@ -260,7 +268,7 @@ footer .cta .knopf{flex:0 1 auto}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .eyebrow::before{animation:none}
-  .rein{opacity:1;transform:none;transition:none}
+  .js .rein{opacity:1;transform:none;transition:none}
   .knopf{transition:none}
 }
 
@@ -313,6 +321,13 @@ footer .cta .knopf{flex:0 1 auto}
 .faq details a{color:var(--rot);text-underline-offset:3px}
 @media (max-width:900px){
   .nachricht .raster,.faq .raster{grid-template-columns:1fr;gap:34px}
+  /* Handy: echter Post zuerst, dann Text */
+  .nachricht .raster{display:flex;flex-direction:column;gap:22px}
+  .nachricht .raster>.rein:last-child{display:contents}
+  .nachricht .handy-bild{order:1}
+  .nachricht .fussnote{order:2;margin-top:-8px}
+  .nachricht .raster>.rein:first-child{order:3}
+  .nachricht .keine-gruppe{order:4;margin-bottom:0}
 }
 </style>
 <script type="application/ld+json">
@@ -345,13 +360,15 @@ footer .cta .knopf{flex:0 1 auto}
     <!-- Video wird erst nach dem ersten Bild per Script geladen (Schleife, ohne Ton). -->
     <video muted loop playsinline preload="none" tabindex="-1"></video>
     <div class="schleier" aria-hidden="true"></div>
+    <div class="mini-post"><small>Echter Post aus dem Kanal</small><b>78,00 €</b><span>🔥 Sonst meist um 179 €, <b>56 % günstiger</b></span><span>📏 Größen 40 bis 46.5</span></div>
   </div>
   <div class="lupe" aria-hidden="true"><div class="griff"></div><div class="glas"><div class="innen"><div class="innen-bild"><img src="assets/hero-quer.webp" alt="" width="1280" height="720" decoding="async"></div></div></div></div>
 
   <div class="wrap inhalt">
     <span class="eyebrow">Sneaker-Deals für Österreich und Deutschland</span>
+    <p class="kein-shop"><b>Kein Shop.</b> Ein kostenloser WhatsApp-Kanal.</p>
     <h1>Wir suchen.<br>Wir finden.<br><em>Du sparst.</em></h1>
-    <p class="lead">Täglich geprüfte Sneaker-Deals aus <b>mehr als 20 Shops</b>. Kostenlos auf WhatsApp oder Telegram.</p>
+    <p class="lead">Jeden Tag geprüfte Sneaker-Deals aus <b>mehr als 20 Shops</b>, direkt in dein WhatsApp oder Telegram. Du kaufst wie immer im Shop.</p>
     <div class="cta">
       <a class="knopf wa" style="flex:1 1 100%;min-height:72px;font-size:22px" data-knopf="hero-whatsapp" href="https://whatsapp.com/channel/0029Vb8jmDIK0IBaGn8I8T3D" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 0 1 12 4zm-3.2 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.2 2.4.9 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1-.2.3-.8 1-1 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.4z"/></svg>
@@ -362,7 +379,7 @@ footer .cta .knopf{flex:0 1 auto}
         Telegram-Kanal
       </a>
     </div>
-    <p class="micro"><b>0 € für dich.</b> Kein Shop, bei uns bestellst und bezahlst du nichts. Keine Anmeldung. Jederzeit wieder raus.</p>
+    <p class="micro"><b>Keine Gruppe:</b> Niemand sieht deine Nummer, und es klingelt nur, wenn du willst. 0 € für dich, jederzeit wieder raus.</p>
   </div>
 </section>
 
@@ -452,9 +469,9 @@ footer .cta .knopf{flex:0 1 auto}
     <ol>
       <li class="rein"><span class="n" aria-hidden="true">1</span><div><h3>„Sale“ heißt nicht <em>billig.</em></h3><p>Ein rot durchgestrichener Preis sagt wenig. Wir vergleichen den Preis mit anderen Shops. Nur was wirklich darunter liegt, zählt als Deal.</p></div></li>
       <li class="rein"><span class="n" aria-hidden="true">2</span><div><h3>Keine Größe, <em>kein Deal.</em></h3><p>Vor dem Posten prüfen wir, welche Größen wirklich da sind. Ein Schnäppchen in Größe 36 nützt dir in 44 nichts.</p></div></li>
-      <li class="rein"><span class="n" aria-hidden="true">3</span><div><h3>Lieber drei gute <em>als zehn halbe.</em></h3><p>Wir posten mehrmals am Tag, aber nur, was die Prüfung besteht. Kein Füllmaterial, keine Dauer-Pings.</p></div></li>
+      <li class="rein"><span class="n" aria-hidden="true">3</span><div><h3>Nur was die Prüfung <em>besteht.</em></h3><p>Wir posten ein paar Runden am Tag, aber nur Deals, die Preis- und Größenprüfung bestehen. Kein Füllmaterial. Der Kanal ist stumm, solange du die Glocke nicht einschaltest.</p></div></li>
       <li class="rein"><span class="n" aria-hidden="true">4</span><div><h3>Vorbei ist <em>vorbei.</em></h3><p>Ist ein Deal ausverkauft oder teurer geworden, markieren wir den Post als abgelaufen. Du läufst nicht ins Leere.</p></div></li>
-      <li class="rein"><span class="n" aria-hidden="true">5</span><div><h3>Du kaufst im Shop, <em>nicht bei uns.</em></h3><p>Wir verkaufen nichts, sammeln keine Daten und schicken keine Werbung. Du bekommst einen Link, der Rest läuft wie immer.</p></div></li>
+      <li class="rein"><span class="n" aria-hidden="true">5</span><div><h3>Du kaufst im Shop, <em>nicht bei uns.</em></h3><p>Wir verkaufen nichts, wollen keine Daten von dir und schicken keine Werbung. Du bekommst einen Link, der Rest läuft wie immer.</p></div></li>
     </ol>
   </div>
 </section>
@@ -523,7 +540,7 @@ footer .cta .knopf{flex:0 1 auto}
 <section class="block hell zitat" id="markus">
   <div class="wrap">
     <figure class="rein" style="margin:0">
-      <blockquote>„Ich zahle ungern den vollen Preis. Also habe ich mir ein Suchprogramm gebaut, eigentlich nur für mich. <strong>Aber gute Preise teilt man gern.</strong>“</blockquote>
+      <blockquote>„Ich habe mir ein Suchprogramm gebaut, eigentlich nur für mich. Jeden Tag vergleicht es Preise in mehr als 20 Shops. <strong>Und gute Preise teilt man gern.</strong>“</blockquote>
       <figcaption>Markus, Wien <span>· macht CHEAPER SNEAKER</span></figcaption>
     </figure>
   </div>

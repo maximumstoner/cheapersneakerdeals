@@ -1,9 +1,53 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Offenlegung</title>
-<style>body{font:16px/1.6 system-ui,sans-serif;background:#111215;color:#eee;margin:0;padding:24px}main{max-width:36em;margin:auto}a{color:#ff4d5a}h1{font-size:24px}</style></head>
-<body><main><h1>Offenlegung</h1>
-<p>Medieninhaber und Herausgeber: Markus Steiner, Wien.</p>
-<p>Art des Angebots: privates Hobby-Projekt mit Hinweisen auf Sneaker-Angebote.</p>
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offenlegung · CHEAPER SNEAKER</title>
+<meta name="description" content="Offenlegung nach § 25 Mediengesetz für cheapersneakerdeals.de.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="../assets/profil-rund.png">
+<style>
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 900;font-display:swap;src:url(../assets/fonts/inter-latin.woff2) format("woff2")}
+body{margin:0;background:#0C0C0C;color:#fff;font:18px/1.6 "Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:40em;margin:0 auto;padding:40px 20px 80px}
+a{color:#fff;text-underline-offset:4px}
+h1{font-size:34px;line-height:1.1;letter-spacing:-.02em;margin:24px 0 10px}
+h2{font-size:22px;margin:36px 0 10px;letter-spacing:-.01em}
+p,li{color:#d6d6da}
+.hinweis{background:#1A1A1C;border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px 18px;color:#fff;font-size:17px}
+.marke{text-decoration:none}.wm{display:inline-block;font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:-.045em;line-height:.86;font-size:22px}.wm b,.wm i{display:block;font-style:italic;font-weight:900}.wm b{color:#fff}.wm i{color:#E10A1F}
+footer{margin-top:50px;font-size:16px;color:#9a9aa2}
+p,li,blockquote{text-wrap:pretty}
+</style>
+</head>
+<body>
+<main>
+<a class="marke" href="/" aria-label="CHEAPER SNEAKER, Startseite"><span class="wm" role="img" aria-label="CHEAPER SNEAKER"><b aria-hidden="true">Cheaper</b><i aria-hidden="true">Sneaker</i></span></a>
+<h1>Offenlegung</h1>
+<p class="hinweis">Stand: 12. Oktober 2026.</p>
+
+<h2>Offenlegung nach § 25 Mediengesetz</h2>
+<p>Medieninhaber und Herausgeber: Markus Steiner, Wien, Österreich.</p>
+<p>Gegenstand: CHEAPER SNEAKER, ein kostenloser Kanal auf WhatsApp und Telegram mit geprüften Sneaker-Angeboten aus Online-Shops. Ein Projekt von CHEAPER Media. Wir verkaufen nichts.</p>
 <p>Kontakt: <a href="mailto:info@cheapermedia.at">info@cheapermedia.at</a></p>
-<p>Links zu Shops führen auf externe Seiten. Preise und Verfügbarkeit können sich ändern, maßgeblich ist die Angabe im jeweiligen Shop.</p>
-<p><a href="/">Zurück</a></p></main></body></html>
+<p>Links zu Shops führen auf fremde Seiten. Preise und Verfügbarkeit können sich ändern, es gilt die Angabe im jeweiligen Shop.</p>
+
+<footer><a href="/">Zurück zur Startseite</a> · <a href="/datenschutz/">Datenschutz</a></footer>
+</main>
+<script>
+  /* Satzanfänge nicht allein am Zeilenende: erstes und zweites Wort jedes Satzes bleiben zusammen (geschütztes Leerzeichen),
+     dadurch rutscht ein Satz ganz in die nächste Zeile, wenn nur sein erstes Wort noch Platz hätte. */
+  (function(){
+    var re = /([.!?…][“"»)]?)(\s+)([^\s]+)(\s+)([^\s]+)/g;
+    var wurzeln = document.querySelectorAll('main, footer');
+    wurzeln.forEach(function(w){
+      var walker = document.createTreeWalker(w, NodeFilter.SHOW_TEXT, { acceptNode: function(n){
+        var el = n.parentElement; if (!el || el.closest('h1,h2,h3,a,.knopf,.wm,.eyebrow,.ueber,script,style')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.trim().length > 20 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP; } });
+      var n; while ((n = walker.nextNode())) { n.nodeValue = n.nodeValue.replace(re, function(m, p, s1, w1, s2, w2){ return p + s1 + w1 + ' ' + w2; }); }
+    });
+  })();
+</script>
+</body>
+</html>
