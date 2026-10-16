@@ -610,28 +610,31 @@ footer .cta .knopf{flex:0 1 auto}
      Darf überall hin bis knapp über die Knöpfe; losgelassen treibt sie langsam über dem Schuh. */
   (function(){
     var film = hero.querySelector('.film'), lupe = hero.querySelector('.lupe'), griff = hero.querySelector('.griff'), glas = hero.querySelector('.glas'), innen = hero.querySelector('.innen'),
-        bildBlock = innen.querySelector('.innen-bild'), bild = bildBlock.querySelector('img'), heroBild = film.querySelector('img'),
+        bildBlock = innen.querySelector('.innen-bild'), bild = bildBlock.querySelector('img'), heroBild = film.querySelector('img'), vid = film.querySelector('video'), lein = document.createElement('canvas'), lc = lein.getContext('2d'),
         inhalt = hero.querySelector('.inhalt'), cta = inhalt.querySelector('.cta'), kopf = document.querySelector('header.kopf'), post = film.querySelector('.mini-post'), kopien = [];
     var w = 0, h = 0, d = 230, bw = 7, k = 1.7, handy = false, fx = 0, fy = 0, fw = 0, fh = 0, zx = 0, zy = 0, ax = 0, ay = 0, sc = 1, aktiv = false, greift = false, t0 = performance.now(), loslassTimer = 0, ox = 0, oy = 0;
-    function bereich(){ var r = hero.getBoundingClientRect(), c = cta.getBoundingClientRect(), b = {x0:d/2/w, x1:1 - d/2/w, y0:d/2/h, y1:Math.max(d/2/h + .05, (c.top - r.top - d/2 - 6)/h)};
+    function bereich(){ var r = hero.getBoundingClientRect(), c = cta.getBoundingClientRect(), kk = kopf.getBoundingClientRect(), b = {x0:d/2/w, x1:1 - d/2/w, y0:Math.min(d/2, (kk.top + kk.bottom) / 2 - r.top)/h, y1:Math.max(d/2/h + .05, (c.top - r.top - d/2 - 6)/h)};
       b.yKnopf = b.y1; b.xKnopf = (c.right - r.left + d/2 + 6) / w;
       if (!handy && post && getComputedStyle(post).display !== 'none') { var p = post.getBoundingClientRect(); b.y1 = Math.max(b.y1, Math.min(1 - d/2/h, (p.bottom - r.top - d/4)/h)); }
       return b; }
     function klon(el, entfernen){ var r = hero.getBoundingClientRect(), i = el.getBoundingClientRect(), x = el.cloneNode(true); x.setAttribute('aria-hidden','true');
       (entfernen || []).forEach(function(sel){ var y = x.querySelector(sel); if (y) y.remove(); });
-      x.style.cssText = 'position:absolute;left:' + (i.left - r.left) + 'px;top:' + (i.top - r.top) + 'px;width:' + i.width + 'px;'; innen.appendChild(x); return x; }
+      x.style.cssText = 'position:absolute;right:auto;bottom:auto;margin:0;left:' + (i.left - r.left) + 'px;top:' + (i.top - r.top) + 'px;width:' + i.width + 'px;'; innen.appendChild(x); return x; }
     function kopienBauen(){ kopien.forEach(function(x){ x.remove(); }); kopien = [klon(inhalt, ['.cta', '.micro']), klon(kopf)]; if (post && getComputedStyle(post).display !== 'none') kopien.push(klon(post)); }
     function mass(){ var r = hero.getBoundingClientRect(), f = film.getBoundingClientRect(); w = r.width; h = r.height; fx = f.left - r.left; fy = f.top - r.top; fw = f.width; fh = f.height;
       handy = innerWidth <= 600; d = lupe.offsetWidth || d; bw = parseFloat(getComputedStyle(glas).borderTopWidth) || bw; k = parseFloat(getComputedStyle(hero).getPropertyValue('--k')) || k;
       innen.style.width = w + 'px'; innen.style.height = h + 'px'; bildBlock.style.cssText = 'left:' + fx + 'px;top:' + fy + 'px;width:' + fw + 'px;height:' + fh + 'px;';
-      if (heroBild.currentSrc && bild.src !== heroBild.currentSrc) bild.src = heroBild.currentSrc; kopienBauen(); }
+      if (heroBild.currentSrc && bild.src !== heroBild.currentSrc) bild.src = heroBild.currentSrc; var dp = Math.min(2, devicePixelRatio || 1); lein.width = Math.round(fw * dp); lein.height = Math.round(fh * dp); kopienBauen(); }
+    function filmMalen(){ if (!vid || !vid.classList.contains('laeuft') || !vid.videoWidth) return; if (!lein.parentNode) { lein.style.cssText = 'position:absolute;inset:0;width:100%;height:100%'; bildBlock.appendChild(lein); }
+      var vw = vid.videoWidth, vh = vid.videoHeight, s = Math.max(lein.width / vw, lein.height / vh), op = getComputedStyle(vid).objectPosition.split(' ').map(parseFloat);
+      lc.drawImage(vid, (lein.width - vw * s) * (op[0] / 100), (lein.height - vh * s) * ((op[1] === undefined ? 50 : op[1]) / 100), vw * s, vh * s); }
     function setz(){ var c = (d - 2 * bw) / 2;
       lupe.style.transform = 'translate3d(' + (ax - d / 2).toFixed(1) + 'px,' + (ay - d / 2).toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
       innen.style.transform = 'translate3d(' + (c - ax * k).toFixed(1) + 'px,' + (c - ay * k).toFixed(1) + 'px,0) scale(' + k + ')'; }
     function ziel(t){ var s = (t - t0) / 1000;
       if (handy) { zx = fx + fw * (0.5 + 0.16 * Math.sin(s * .17)); zy = fy + fh * (0.5 + 0.12 * Math.sin(s * .23 + 1)); }
       else { zx = w * (0.72 + 0.05 * Math.sin(s * .17)); zy = h * (0.45 + 0.08 * Math.sin(s * .23 + 1)); } }
-    function tick(t){ if (!aktiv) ziel(t); var f = greift ? .35 : (aktiv ? .2 : .035); ax += (zx - ax) * f; ay += (zy - ay) * f; sc += ((aktiv ? 1.08 : 1) - sc) * .1; setz(); requestAnimationFrame(tick); }
+    function tick(t){ if (!aktiv) ziel(t); var f = greift ? .35 : (aktiv ? .2 : .035); ax += (zx - ax) * f; ay += (zy - ay) * f; sc += ((aktiv ? 1.08 : 1) - sc) * .1; setz(); filmMalen(); requestAnimationFrame(tick); }
     mass(); ziel(t0); ax = zx; ay = zy; setz();
     heroBild.addEventListener('load', mass); addEventListener('resize', mass); addEventListener('load', mass);
     if (ruhig) return;
